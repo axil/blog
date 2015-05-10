@@ -1,5 +1,5 @@
-Microsoft Word Tips
-###########################
+Microsoft Word Tips and Tricks
+##############################
 
 :tags: word, tips
 

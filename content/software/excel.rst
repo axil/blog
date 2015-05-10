@@ -1,5 +1,5 @@
-Microsoft Excel tips
-######################
+Microsoft Excel Tips and Tricks
+###############################
 
 :tags: excel, tips
 
