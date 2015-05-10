@@ -38,3 +38,4 @@ THEME = "./pelican-elegant"
 
 DEFAULT_DATE = 'fs'
 LOCALE = 'usa'
+STATIC_PATHS = 'css', 'img'
