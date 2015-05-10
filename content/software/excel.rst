@@ -1,6 +1,8 @@
 Microsoft Excel tips
 ######################
 
+:tags: excel, tips
+
 .. role:: kbd
 
 

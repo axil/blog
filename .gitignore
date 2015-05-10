@@ -1,2 +1,6 @@
 cache
 output
+/publishconf.py
+/Makefile
+/fabfile.py
+/pelican-elegant
