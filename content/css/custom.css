@@ -26,6 +26,7 @@ body .page_header h1 {
 
 .article-content .label {
     background: none;
+    text-shadow: none;
 }
 
 aside {
