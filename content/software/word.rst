@@ -6,13 +6,13 @@ Microsoft Word Tips and Tricks
 
 * tables: 
 
-  - select row: drag *or* `alt` + `home` (go to first cell) then `shift`\ +\ `alt`\ +\ `end`
+  - select row:  drag *or* `alt` + `home` (go to first cell) then `shift`\ +\ `alt`\ +\ `end`
 
-  - select column: drag *or* click top edge of the column\ [*]_ *or* `shift` + right-click inside it\ [*]_
+  - select column:  drag *or* click top edge of the column\ [*]_ *or* `shift` + right-click inside it\ [*]_
   
-  - move row(s) up/down: select row(s) then `shift`\ +\ `alt`\ +\ `up`\ /\ `down`
+  - move row(s) up/down:  select row(s) then `shift`\ +\ `alt`\ +\ `up`\ /\ `down`
 
-  - delete row(s)/column(s): select the row(s) [*]_ /column(s) then `backspace`
+  - delete row(s)/column(s):  select the row(s) [*]_ /column(s) then `backspace`
 
 .. [*] like this:
 .. image:: img/word1.gif
@@ -24,5 +24,4 @@ Microsoft Word Tips and Tricks
 
 .. [*] Make sure selection extends past the last column which is number of columns +1 (drag *or* `shift`\ +\ `right`).
   Word shows the selection extended next to the last column. 
-
 
