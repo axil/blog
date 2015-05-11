@@ -19,7 +19,7 @@ Microsoft Excel Tips and Tricks
 
 .. raw:: html
 
-  <pre style="background:none;border:0;margin:-20px 0 0 160px;padding: 0">~      !     @    #      $         %          ^</pre>
+  <pre style="background:none;border:0;margin:-20px 0 -10px 160px;padding: 0">~      !     @    #      $         %          ^</pre>
 
 * borders: 
 
