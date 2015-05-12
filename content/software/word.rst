@@ -10,7 +10,7 @@ Microsoft Word Tips and Tricks
 
   - select column:  drag *or* click top edge of the column\ [*]_ *or* `shift` + right-click inside it\ [*]_
   
-  - move row(s) up/down:  select row(s) then `shift`\ +\ `alt`\ +\ `up`\ /\ `down`
+  - move row(s) up/down:  `shift`\ +\ `alt`\ +\ `up`\ /\ `down` [*]_
 
   - delete row(s)/column(s):  select the row(s) [*]_ /column(s) then `backspace`
 
@@ -21,6 +21,8 @@ Microsoft Word Tips and Tricks
 .. [*] like that:
 .. image:: img/word2.gif
   :alt: word2
+
+.. [*] single row is selected automatically; to move several rows, select them first
 
 .. [*] Make sure selection extends past the last column which is number of columns +1 (drag *or* `shift`\ +\ `right`).
   Word shows the selection extended next to the last column. 
