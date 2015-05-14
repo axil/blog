@@ -6,6 +6,8 @@ Microsoft Word Tips and Tricks
 
 * tables: 
 
+  - add row: put cursor just to the right of the last cell and press `enter`
+
   - select row:  drag *or* `alt` + `home` (go to first cell) then `shift`\ +\ `alt`\ +\ `end`
 
   - select column:  drag *or* click top edge of the column\ [*]_ *or* `shift` + right-click inside it\ [*]_
