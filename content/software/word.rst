@@ -6,9 +6,21 @@ Microsoft Word Tips and Tricks
 
 * tables: 
 
-  - select row:  drag *or* `alt` + `home` (go to the first cell) then `shift`\ +\ `alt`\ +\ `end`
+  - select row:  drag *or* 
 
-  - select column:  drag *or* click top edge of the column\ [*]_ *or* `shift` + right-click inside it\ [*]_
+    - click first cell then shift-click last cell *or*
+
+    - `alt` + `home` (go to the first cell) then `shift`\ +\ `alt`\ +\ `end`
+
+  - select column:  drag *or* 
+    
+    - click top cell then shift-click bottom cell *or*
+
+    - click top edge of the column\ [*]_ *or* 
+
+    - `shift` + right-click inside it\ [*]_ *or* 
+
+    - `alt` + `page up` (go to the topmost cell) then `shift` + `alt` + `page down`
   
   - move row(s) up/down:  `shift`\ +\ `alt`\ +\ `up`\ /\ `down` [*]_
 
@@ -28,6 +40,6 @@ Microsoft Word Tips and Tricks
 
 .. [*] single row is selected automatically; to move several rows, select them first
 
-.. [*] Make sure selection extends past the last column which is number of columns +1 (drag *or* `shift`\ +\ `right`).
-  Word shows the selection extended next to the last column. 
+.. [*] make sure selection extends past the last column which is number of columns +1 (drag *or* `shift`\ +\ `right`):
+  word shows the selection extended next to the last column. 
 

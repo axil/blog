@@ -8,6 +8,10 @@ body .page_header h1 {
     list-style-image: url('../img/dash.png');
 }
 
+.article-content ul ul ul{
+    list-style-image: url('../img/tilde.png');
+}
+
 .article-content ul ul li{
     margin-left: 0;
 }
