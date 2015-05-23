@@ -3,7 +3,7 @@ Patching cmd.exe
 
 :tags: cmd.exe, patching
 
-When breaking execution of bat-file with ctrl-c it stops with a pretty useless 
+Breaking the execution of a bat-file with ctrl-c makes it stop with a pretty useless 
 "Terminate Batch job (Y/N)?" prompt.
 
 It looks like the most universal way to suppress it is to patch cmd.exe.
