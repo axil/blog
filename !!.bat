@@ -1,3 +1,4 @@
+git add .
 git ci -am "fix"
 git push
 cd output
