@@ -70,5 +70,5 @@ Be sure to assign the appropriate rights to the script so that it could overwrit
 
 Backups are saved with '.bak' extension.
 
-.. [*] Answering 'N' will make the .bat execution continue from the line, following the one that was interrupted by ctrl-c. I've never used it and can't think of a situation where it would be useful.
+.. [*] Answering 'N' will make the .bat execution continue from the line, following the one that was interrupted by ctrl-c. I've never used it and can't think of a situation where I would.
 
