@@ -1,12 +1,14 @@
 Patching cmd.exe
 ##############################
 
-:tags: cmd.exe, patching
+:tags: cmd.exe, patch, assembler
 
 Breaking the execution of a bat-file with ctrl-c makes it stop with a pretty useless\ [*]_ 
 "Terminate Batch job (Y/N)?" prompt.
 
 It looks like the most universal way to suppress it is to patch cmd.exe as described in `this blog`_.
+
+.. _this blog: http://itsme.home.xs4all.nl/projects/misc/patching-cmdexe.html
 
 In Windows 7 there're two cmd.exe: 32bit (for which the recipe above works) and 64bit (for which it doesn't). 
 Here's the corresponding code for the 64bit version (search for the hex string "BA 7B 23 00 00" in cmd.exe):
@@ -36,9 +38,9 @@ Here's the corresponding code for the 64bit version (search for the hex string "
         .text:000000004AD1D0AB                 jmp     short loc_4AD1D0BC
 
 
-And here's a python script that automates the process:
+And here's a `python script`_ that automates the process:
 
-.. _this blog: http://itsme.home.xs4all.nl/projects/misc/patching-cmdexe.html
+.. _python script: https://github.com/axil/patch-cmd
 
 .. code:: python
 
