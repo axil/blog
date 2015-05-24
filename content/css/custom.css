@@ -45,3 +45,8 @@ aside {
     margin-top: 0;
 }
 
+body article p a, body article ol a { 
+border-bottom: 1px dashed black;
+color: black;
+}
+
