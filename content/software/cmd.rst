@@ -7,7 +7,7 @@ Patching cmd.exe
 Breaking the execution of a bat-file with ctrl-c makes it stop with a pretty useless\ [*]_ 
 "Terminate Batch job (Y/N)?" prompt.
 
-It looks like the most universal way to suppress it is to patch cmd.exe as described in `this blog`_.
+It looks like the most universal\ [*]_ way to suppress it is to patch cmd.exe as described in `this blog`_.
 
 .. _this blog: http://itsme.home.xs4all.nl/projects/misc/patching-cmdexe.html
 
@@ -71,5 +71,6 @@ Be sure to assign the appropriate rights to the script so that it could overwrit
 
 Backups are saved with '.bak' extension.
 
-.. [*] Answering 'N' will make the .bat execution continue from the line, following the one that was interrupted by ctrl-c. I've never used it and can't think of a situation where I would.
+.. [*] Answering 'N' will make the bat-file execution continue from the line, following the one that was interrupted by ctrl-c. I've never used it and can't think of a situation where I would.
 
+.. [*] Less universal ways include using 'start' command inside the bat-file so that it ends its execution before user has a chance to press ctrl-c. The drawback is that it opens a new window. 'start -b' doesn't, but it isolates the process from ctrl-c shortcut.
