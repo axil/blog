@@ -2,6 +2,7 @@ Patching cmd.exe
 ##############################
 
 :tags: cmd.exe, patch, assembler
+:date: 2015-05-15 10:20
 
 Breaking the execution of a bat-file with ctrl-c makes it stop with a pretty useless\ [*]_ 
 "Terminate Batch job (Y/N)?" prompt.
