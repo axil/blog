@@ -5,8 +5,9 @@ Patching cmd.exe
 :date: 2015-05-15 10:20
 
 .. image:: img/cmd.png
+  :alt: screenshot
 
-Breaking the execution of a bat-file with `ctrl-c` makes it stop with a ubiquitous yet pretty useless\ [*]_ 
+Breaking the execution of a bat-file with `Ctrl-C` makes it stop with a ubiquitous yet pretty useless\ [*]_ 
 "Terminate Batch job (Y/N)?" prompt.
 
 It looks like the most universal\ [*]_ way to suppress it is to patch cmd.exe as described in `this blog`_.
