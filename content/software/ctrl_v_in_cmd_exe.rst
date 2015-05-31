@@ -1,7 +1,7 @@
 Enabling "Ctrl-V" in Windows console using Autohotkey
 #####################################################
 
-#. Install Autohotkey
+#. Install Autohotkey_
 
 #. Create a file named "anything.ahk" with the following contents::
 
