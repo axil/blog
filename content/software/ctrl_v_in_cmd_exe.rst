@@ -18,10 +18,13 @@ Enabling "Ctrl-V" in Windows console using Autohotkey
 
 #. run it
 
-PS Disable using the tray icon, or add '#NoTrayIcon' to the top of the script and disable by killing 
-'AutoHotkey' process in the Task manager
+You can disable it:
 
-PPS apply at startup using Start->Programs->Startup
+* using the tray icon, *or (if you don't like the tray icon)*,
+    
+* add '#NoTrayIcon' to the top of the script and then disable by killing 'AutoHotkey.exe' process in the Task manager
+
+Apply at startup using Start->Programs->Startup
 
 ----------
 
