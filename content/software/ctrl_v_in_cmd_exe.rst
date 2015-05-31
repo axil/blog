@@ -26,6 +26,10 @@ You can disable it:
 
 Apply at startup using Start->Programs->Startup
 
+PS Microsoft *suddenly* added_ the functionality in Windows 10.
+
+.. _added : http://www.howtogeek.com/197749/how-to-power-up-the-windows-10-command-prompt-with-ctrlc-and-ctrlv/
+
 ----------
 
 Sources: 
