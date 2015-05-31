@@ -1,7 +1,7 @@
 Suppressing "Terminate batch job? (Y/N)" in Windows console by patching cmd.exe
 ###############################################################################
 
-:tags: cmd.exe, console, tips, patch, assembler
+:tags: cmd.exe, windows console, tips, patch, assembler
 :date: 2015-05-15 10:20
 
 .. image:: img/cmd.png
