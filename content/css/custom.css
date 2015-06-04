@@ -58,3 +58,12 @@ body article p a, body article ol a {
 body .article-content p{
     margin: 10px 0;
 }
+
+table.docutils {
+    width: 450px;
+}
+
+table.docutils td{
+    padding: 5px 8px;
+    border: 1px solid lightgray;
+}
