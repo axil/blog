@@ -1,4 +1,4 @@
-Django templates to Jinja2 vocabulary
+Django templates to Jinja2 dictionary
 #####################################
 
 :tags: django, jinja, jinja2
