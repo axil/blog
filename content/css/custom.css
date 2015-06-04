@@ -72,3 +72,8 @@ body .article-content p{
     padding: 5px 8px;
     border: 1px solid lightgray;
 }
+
+.graytable table th {
+    font-weight: bold;
+}
+
