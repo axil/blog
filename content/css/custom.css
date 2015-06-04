@@ -59,11 +59,16 @@ body .article-content p{
     margin: 10px 0;
 }
 
-table.docutils {
+.graytable {
+    margin-bottom: 14px;
+}
+
+.graytable table {
     width: 450px;
 }
 
-table.docutils td{
+.graytable table th,
+.graytable table td{
     padding: 5px 8px;
     border: 1px solid lightgray;
 }
