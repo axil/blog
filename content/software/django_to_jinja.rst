@@ -1,6 +1,8 @@
 Django templates to Jinja2 vocabulary
 #####################################
 
+:tags: django, jinja, jinja2
+
 +-------------------------------+-----------------------------------+
 | {{ block.super }}             | {{ super() }}                     |
 +-------------------------------+-----------------------------------+
@@ -10,6 +12,8 @@ Django templates to Jinja2 vocabulary
 +-------------------------------+-----------------------------------+
 | {{ v | default:"-" }}         | {{ v | default('-', true) }}      |
 +-------------------------------+-----------------------------------+
-| {{ v | default_if_none:"-" }} | {{ v if v is not None else '-' }} |
+| {{ v | default_if_none:"-" }} | {{ v if v is not None else '-' }}\ [*]_ |
 +-------------------------------+-----------------------------------+
+
+.. [*] http://stackoverflow.com/questions/11146619/suppress-none-output-as-string-in-jinja2
 
