@@ -43,3 +43,5 @@ GOOGLE_ANALYTICS = 'UA-63331443-1'
 
 DIRECT_TEMPLATES = ('index', 'tags', 'categories', 'archives', 'sitemap')
 SITEMAP_SAVE_AS = 'sitemap.xml'
+
+DISQUS_SITENAME = "axil"
