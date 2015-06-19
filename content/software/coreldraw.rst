@@ -1,7 +1,7 @@
 5 Ways to Copy an Object in CorelDraw 
 #####################################
 
-:tags: coreldraw, tips
+:tags: coreldraw, copying, tips
 :date: 2015-05-26 17:00
 
 

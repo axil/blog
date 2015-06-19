@@ -1,7 +1,7 @@
 Efficient Table Editing in Microsoft Word
 #########################################
 
-:tags: word, tips
+:tags: word, tables, tips
 
 
 * tables: 

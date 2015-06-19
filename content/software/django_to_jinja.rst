@@ -1,7 +1,7 @@
 Django templates to Jinja2 dictionary
 #####################################
 
-:tags: django, jinja2
+:tags: django, jinja2, templates
 
 .. container:: graytable
 

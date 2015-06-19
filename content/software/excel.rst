@@ -1,7 +1,7 @@
 Microsoft Excel Keyboard Shortcuts
 ##################################
 
-:tags: excel, tips
+:tags: excel, shortcuts, tips
 
 .. role:: kbd
 
