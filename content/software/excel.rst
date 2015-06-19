@@ -1,5 +1,5 @@
-Microsoft Excel Tips and Tricks
-###############################
+Microsoft Excel Keyboard Shortcuts
+##################################
 
 :tags: excel, tips
 

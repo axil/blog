@@ -1,5 +1,5 @@
-Microsoft Word Tips and Tricks
-##############################
+Efficient Table Editing in Microsoft Word
+#########################################
 
 :tags: word, tips
 
