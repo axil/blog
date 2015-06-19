@@ -1,20 +1,19 @@
-Corel Draw Tips and Tricks
-###############################
+5 Ways to Copy an Object in Corel Draw 
+######################################
 
 :tags: coreldraw, tips
 :date: 2015-05-26 17:00
 
-* Copying objects
 
-  - `num-plus` duplicate with 0 distance [*]_
+- `num-plus` duplicate with zero distance [*]_
 
-  - `ctrl-d` duplicate with distance set in the toolbar [*]_
+- `ctrl-d` duplicate with distance set in the toolbar [*]_
 
-  - `right-click` when dragging
+- `right-click` when dragging
 
-  - `space` when dragging
+- `space` when dragging
 
-  - `ctrl-r` repeat last action
+- `ctrl-r` repeat last action
 
 
 .. [*] Non-remappable to other keys other than by creating a macros
