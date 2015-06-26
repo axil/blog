@@ -1,6 +1,8 @@
 Fix Alt-Tab in Labview
 ======================
 
+:tags: labview, alt-tab, python, autohotkey
+
 In all Windows applications `Alt`\ +\ `Tab` switches to the most recently used window.
 
 In Labview it switches to the most recently used *LabView* window.
