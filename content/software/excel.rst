@@ -32,12 +32,18 @@ Microsoft Excel Keyboard Shortcuts
 
   - add/remove:  `ctrl`\ +\ `shift` + `&`/`_`
 
-* copy data
+* copy data into the current cell
 
-  - fill down:  `ctrl`\ +\ `d` (from the upper cell)
-  - fill right:  `ctrl`\ +\ `r`  (from the left cell)
-  - copy formula above:  `ctrl`\ +\ `'`
-  - copy value above:  `ctrl`\ +\ `"`
+  - copy formula above:  `ctrl`\ +\ `'` (and enter editing mode)
+  - copy value above:  `ctrl`\ +\ `"` (no edit mode)
+  - fill down:  `ctrl`\ +\ `d` (copy formula and format from the upper cell, no edit mode)
+  - fill right:  `ctrl`\ +\ `r`  (copy formula and format from the left cell, no edit mode)
+
+* copy data inside cell range
+
+  - fill down:  `ctrl`\ +\ `d` (replicate the upper row downwards)
+  - fill right:  `ctrl`\ +\ `r`  (replicate the leftmost column to the right)
+  - thus fill rectangle will be `ctrl`\ +\ `d` followed by `ctrl`\ +\ `r`
 
 * etc
   
