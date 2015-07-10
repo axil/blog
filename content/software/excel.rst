@@ -8,6 +8,8 @@ Microsoft Excel Keyboard Shortcuts
 
 * select row/column:  `shift`\ +\ `space` / `ctrl`\ +\ `space`
 
+* expand/reduce selection: `shift`\ +\ arrows
+
 * insert row/column:  `ctrl`\ +\ `+`
 
 * move several rows/columns: 
