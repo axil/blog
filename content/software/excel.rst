@@ -17,6 +17,19 @@ Microsoft Excel Keyboard Shortcuts
 
 * shift multi-row selection box: ctrl-drag
 
+* copy data into the current cell
+
+  - copy formula above:  `ctrl`\ +\ `'` (and enter editing mode as if `f2` is pressed)
+  - copy value above:  `ctrl`\ +\ `"` (no edit mode)
+  - fill down:  `ctrl`\ +\ `d` (copy formula and format from the upper cell, no edit mode)
+  - fill right:  `ctrl`\ +\ `r`  (copy formula and format from the left cell, no edit mode)
+
+* copy data inside cell range
+
+  - fill down:  `ctrl`\ +\ `d` (replicate the upper row downwards)
+  - fill right:  `ctrl`\ +\ `r`  (replicate the leftmost column to the right)
+  - thus fill rectangle will be `ctrl`\ +\ `d` followed by `ctrl`\ +\ `r`
+
 * formatting: 
 
   - clear formatting:  `alt`\ +\ `'` then `enter`
@@ -31,19 +44,6 @@ Microsoft Excel Keyboard Shortcuts
 * borders: 
 
   - add/remove:  `ctrl`\ +\ `shift` + `&`/`_`
-
-* copy data into the current cell
-
-  - copy formula above:  `ctrl`\ +\ `'` (and enter editing mode as if `f2` is pressed)
-  - copy value above:  `ctrl`\ +\ `"` (no edit mode)
-  - fill down:  `ctrl`\ +\ `d` (copy formula and format from the upper cell, no edit mode)
-  - fill right:  `ctrl`\ +\ `r`  (copy formula and format from the left cell, no edit mode)
-
-* copy data inside cell range
-
-  - fill down:  `ctrl`\ +\ `d` (replicate the upper row downwards)
-  - fill right:  `ctrl`\ +\ `r`  (replicate the leftmost column to the right)
-  - thus fill rectangle will be `ctrl`\ +\ `d` followed by `ctrl`\ +\ `r`
 
 * etc
   
