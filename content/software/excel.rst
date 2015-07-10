@@ -10,6 +10,13 @@ Microsoft Excel Keyboard Shortcuts
 
 * insert row/column:  `ctrl`\ +\ `+`
 
+* move several rows: 
+
+  - shift-drag
+  - `ctrl`\ +\ `x` to cut rows, then `ctrl`\ +\ `num+` to insert (shifting adjacent rows/columns as expected)
+
+* move multi-row selection box: ctrl-drag
+
 * formatting: 
 
   - clear formatting:  `alt`\ +\ `'` then `enter`
