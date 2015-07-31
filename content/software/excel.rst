@@ -50,6 +50,7 @@ Microsoft Excel Keyboard Shortcuts
 * etc
   
   - repeat last action:  `f4` [*]_ or `ctrl`\ +\ `y` or `alt`\ +\ `enter`
+  - autocomplete from adjacent cells in the current column: `alt`\ +\ `arrow down` [*]_
 
 * formulas: 
   
@@ -58,5 +59,7 @@ Microsoft Excel Keyboard Shortcuts
   - toggle absolute and relative references:  `f4` [*]_
     
 .. [*] with cell(s) selected
+.. [*] other meaning for filtering and data validation, see this `blog post`_
+.. _`blog post`: http://www.accountingweb.com/technology/excel/automating-data-validation-lists-in-excel
 .. [*] when editing a cell with text cursor blinking inside the reference name
 
