@@ -6,6 +6,12 @@ Microsoft Excel Keyboard Shortcuts
 .. role:: kbd
 
 
+* enter data: `Tab` to move active cell to the right, `Enter` to go to the start of next line (to the column that you started with in the the previous line)
+
+.. image:: img/Image-1a-blog.png
+  :alt: enter and tab
+  :class: centered-image
+
 * select row/column:  `shift`\ +\ `space` / `ctrl`\ +\ `space`
 
 * expand/reduce selection: `shift`\ +\ arrows

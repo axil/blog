@@ -77,3 +77,7 @@ body .article-content p{
     font-weight: bold;
 }
 
+.centered-image {
+    display: block;
+    margin: auto;
+}
