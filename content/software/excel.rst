@@ -20,7 +20,8 @@ Microsoft Excel Keyboard Shortcuts
 
 * move several rows/columns: 
 
-  - shift-drag
+  - drag to move into an empty space
+  - shift-drag to move and squeeze between existing rows/columns
   - `ctrl`\ +\ `x` to cut, then `ctrl`\ +\ `num+` to insert (shifting adjacent rows/columns accordingly)
 
 * shift multi-row selection box: ctrl-drag
