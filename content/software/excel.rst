@@ -6,7 +6,12 @@ Microsoft Excel Keyboard Shortcuts
 .. role:: kbd
 
 
-* enter data: `Tab` to move active cell to the right, `Enter` to go to the start of next line (to the column that you started with in the the previous line)
+* enter data: 
+
+  - `Tab` to move active cell to the right, 
+  - `Shift`\ +\ `Tab` to the left, 
+  - `Enter` to go to the "start" of next line (to the column you started with in the the previous line [*]_), 
+  - `Shift`\ +\ `Enter` to move up 
 
 .. image:: img/Image-1a-blog.png
   :alt: enter and tab
@@ -65,6 +70,7 @@ Microsoft Excel Keyboard Shortcuts
   - autosum:  `alt`\ +\ `=`
   - toggle absolute and relative references:  `f4` [*]_
     
+.. [*] the position is reset to the current cell if arrows are used for naviation
 .. [*] with cell(s) selected
 .. [*] other meaning for filtering and data validation, see this `blog post`_
 .. _`blog post`: http://www.accountingweb.com/technology/excel/automating-data-validation-lists-in-excel
