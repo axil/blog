@@ -33,8 +33,8 @@ Microsoft Excel Keyboard Shortcuts
 
 * copy data into the current cell
 
-  - copy formula above:  `ctrl`\ +\ `'` (and enter editing mode as if `f2` is pressed)
-  - copy value above:  `ctrl`\ +\ `"` (no edit mode)
+  - copy formula above:  `ctrl`\ +\ `'` (and enter edit mode as if `f2` is pressed)
+  - copy value above:  `ctrl`\ +\ `"` (without entering edit mode)
   - fill down:  `ctrl`\ +\ `d` (copy formula and format from the upper cell, no edit mode)
   - fill right:  `ctrl`\ +\ `r`  (copy formula and format from the left cell, no edit mode)
 
