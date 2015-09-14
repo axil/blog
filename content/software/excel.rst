@@ -37,6 +37,7 @@ Microsoft Excel Keyboard Shortcuts
   - copy value above:  `ctrl`\ +\ `"` (without entering edit mode)
   - fill down:  `ctrl`\ +\ `d` (copy formula and format from the upper cell, no edit mode)
   - fill right:  `ctrl`\ +\ `r`  (copy formula and format from the left cell, no edit mode)
+  - autocomplete text from adjacent cells in the current column: `alt`\ +\ `arrow down` [*]_
 
 * copy data inside cell range
 
@@ -62,7 +63,6 @@ Microsoft Excel Keyboard Shortcuts
 * etc
   
   - repeat last action:  `f4` [*]_ or `ctrl`\ +\ `y` or `alt`\ +\ `enter`
-  - autocomplete from adjacent cells in the current column: `alt`\ +\ `arrow down` [*]_
 
 * formulas: 
   
