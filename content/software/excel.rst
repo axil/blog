@@ -8,10 +8,10 @@ Microsoft Excel Keyboard Shortcuts
 
 * enter data: 
 
-  - `Tab` to move active cell to the right, 
-  - `Shift`\ +\ `Tab` to the left, 
-  - `Enter` to go to the "start" of next line (to the column you started with in the the previous line [*]_), 
-  - `Shift`\ +\ `Enter` to move up 
+  - `tab` to move active cell to the right, 
+  - `shift`\ +\ `tab` to the left, 
+  - `enter` to go to the "start" of next line (to the column you started with in the the previous line [*]_), 
+  - `shift`\ +\ `enter` to move up 
 
 .. image:: img/Image-1a-blog.png
   :alt: enter and tab
