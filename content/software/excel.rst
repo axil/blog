@@ -13,7 +13,11 @@ To use it, click a cell you want to reference, say, D4. Then press `f4` once (it
 to make the reference absolute so that it wont 'adapt' when you drag your formula to other 
 rows or columns the way relative references do.
 
-Now a couple of other shortcuts that might be useful every now and then:
+The problem with Excel keyboard shortcuts is that while they can make sheets editing
+more effective they are so numerous and their documentation is so poorly structured
+that people hardly ever use any of them.
+
+I've come through all of them and here's a cheetsheet of shortcuts that I found useful:
 
 * entering data: 
 
