@@ -4,8 +4,15 @@ body .page_header h1 {
     margin: 20px 0 10px;
 }
 
+body .article-content ul {
+    margin-left: 0px;
+}
+
 .article-content ul ul{
     list-style-image: url('../img/dash.png');
+    margin-left: 24px;
+    margin-top: -1px;
+    margin-bottom: 3px;
 }
 
 .article-content ul ul ul{
@@ -80,4 +87,16 @@ body .article-content p{
 .centered-image {
     display: block;
     margin: auto;
+}
+
+article h2 {
+    font-family: georgia;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+#accordion2 {
+    clear: both;
+    margin-top: 20px;
 }

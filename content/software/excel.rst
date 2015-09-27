@@ -1,5 +1,5 @@
-Microsoft Excel Keyboard Shortcuts
-##################################
+Essential Microsoft Excel Keyboard Shortcuts
+############################################
 
 :tags: excel, shortcuts, tips
 
@@ -9,7 +9,7 @@ The most convenient and the least used shortcut of Excel is:
 
 * when editing a formula, press `f4` to toggle between absolute and relative reference
 
-To use it, click a cell you want to reference, say, D4. Then press `f4` once (it will change to $D$4) 
+To use it, click a cell you want to reference, say, D5. Then press `f4` once (it will change to $D$5) 
 to make the reference absolute so that it wont 'adapt' when you drag your formula to other 
 rows or columns the way relative references do.
 
@@ -19,20 +19,35 @@ that people hardly ever use any of them.
 
 I've come through all of them and here's a cheetsheet of shortcuts that I found useful:
 
-* entering data: 
+Entering data
+-------------
+
+* moving around:
 
   - `tab` to move active cell to the right, 
   - `shift`\ +\ `tab` to the left, 
-  - `enter` to go to the "start" of next line (to the column you started with in the the previous line [*]_), 
-  - `shift`\ +\ `enter` to move up 
+  - `enter` to go to the "start" of next line (to the column you originally started with, that is where you pressed `tab` or `enter` for the first time [*]_), 
+  - `shift`\ +\ `enter` to move up
 
 .. image:: img/Image-1a-blog.png
   :alt: enter and tab
   :class: centered-image
 
+This "mode" is an alternative to using arrow keys. If you press an arrow key you switch out of the "mode"
+and the "first column" is reset to the current position.
+
+Selecting cells
+---------------
+
 * select row/column:  `shift`\ +\ `space` / `ctrl`\ +\ `space`
 
 * expand/reduce selection: `shift`\ +\ arrows
+
+* shift multi-cell selection box: ctrl-drag
+
+
+Data manipulation
+-----------------
 
 * insert cell(s): `ctrl`\ +\ `+`
    
@@ -45,8 +60,6 @@ I've come through all of them and here's a cheetsheet of shortcuts that I found 
   - drag to move into an empty space
   - shift-drag to move and squeeze between existing rows/columns
   - `ctrl`\ +\ `x` to cut, then `ctrl`\ +\ `num+` to insert (shifting adjacent rows/columns accordingly)
-
-* shift multi-row selection box: ctrl-drag
 
 * copy data into the current cell
 
@@ -62,9 +75,12 @@ I've come through all of them and here's a cheetsheet of shortcuts that I found 
   - fill right:  `ctrl`\ +\ `r`  (replicate the leftmost column to the right)
   - thus fill rectangle will be `ctrl`\ +\ `d` followed by `ctrl`\ +\ `r`
 
-* formatting: 
 
-  - clear formatting:  `alt`\ +\ `'` then `enter`
+Formatting
+----------
+
+* cell modes:
+
   - format cells:  `ctrl`\ +\ `1`
   - number mode:  `ctrl`\ + `shift` + `!`
   - modes:  general/number/time/date/currency/percentage/scientific
@@ -73,13 +89,19 @@ I've come through all of them and here's a cheetsheet of shortcuts that I found 
 
   <pre style="background:none;border:0;margin:-20px 0 -10px 153px;padding: 0">~      !     @    #      $         %          ^</pre>
 
-* borders: 
+* visual formatting: 
 
-  - add/remove:  `ctrl`\ +\ `shift` + `&`/`_`
+  - clear formatting:  `alt`\ +\ `'` then `enter`
+  - add/remove borders:  `ctrl`\ +\ `shift` + `&`/`_`
+
+
+Miscellaneous
+-------------
 
 * etc
   
   - repeat last action:  `f4` [*]_ or `ctrl`\ +\ `y` or `alt`\ +\ `enter`
+
 
 * formulas: 
   
