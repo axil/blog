@@ -22,7 +22,7 @@ I've come through all of them and here's a cheetsheet of shortcuts that I found 
 Entering data
 -------------
 
-* moving around:
+* filling up a table (just a rectangular area):
 
   - `tab` to move active cell to the right, 
   - `shift`\ +\ `tab` to the left, 
@@ -36,6 +36,11 @@ Entering data
 This "mode" is an alternative to using arrow keys. If you press an arrow key you switch out of the "mode"
 and the "first column" is reset to the current position.
 
+Moving around
+-------------
+
+* jump to the border of the filled in area: `ctrl`\ +\ arrows
+
 Selecting cells
 ---------------
 
@@ -44,6 +49,8 @@ Selecting cells
 * expand/reduce selection: `shift`\ +\ arrows
 
 * shift multi-cell selection box: ctrl-drag
+
+* switching between the corners of the selection: `ctrl`\ +\ `.`
 
 
 Data manipulation
