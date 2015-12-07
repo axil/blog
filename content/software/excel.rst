@@ -41,6 +41,10 @@ Moving around
 
 * jump to the border of the filled in area: `ctrl`\ +\ arrows
 
+  - particularly, jump to the end of the data: `ctrl`\ +\ `down`
+
+* switch to the next/previous sheet: `ctrl`\ +\ `page up`/`page down`
+
 Selecting cells
 ---------------
 
