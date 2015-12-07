@@ -54,7 +54,7 @@ Selecting cells
 
 * shift multi-cell selection box: ctrl-drag
 
-* switching between the corners of the selection: `ctrl`\ +\ `.`
+* jumping between four corners of the selection: `ctrl`\ +\ `.`
 
 
 Data manipulation
