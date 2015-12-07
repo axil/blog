@@ -43,7 +43,7 @@ Moving around
 
   - particularly, jump to the end of the data: `ctrl`\ +\ `down`
 
-* switch to the next/previous sheet: `ctrl`\ +\ `page up`/`page down`
+* switch to the next/previous sheet: `ctrl`\ +\ `page down`/`page up`
 
 Selecting cells
 ---------------
