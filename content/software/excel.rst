@@ -29,6 +29,8 @@ Entering data
   - `enter` to go to the "start" of next line (to the column you originally started with, that is where you pressed `tab` or `enter` for the first time [*]_), 
   - `shift`\ +\ `enter` to move up
 
+.. [*] the position is reset to the current cell if arrows are used for naviation
+
 .. image:: img/Image-1a-blog.png
   :alt: enter and tab
   :class: centered-image
@@ -39,12 +41,17 @@ and the "first column" is reset to the current position.
 Moving around
 -------------
 
-* jump to the border of the filled in area: `ctrl`\ +\ arrows
+* jump to the "first"(A1)/"last"[*]_ cell in the sheet: `ctrl`\ +\ `home`/`end`
+
+* jump to the border of the filled in area[*]_: `ctrl`\ +\ arrows
 
   - in particular, jump to the end of the data: `ctrl`\ +\ `down`
 
 * switch to the next/previous sheet: `ctrl`\ +\ `page down`/`page up`
 
+.. [*] intersection of the last nonempty column and the last nonempty row
+.. [*] that is, to the first or the last cell of the continuous nonempty range whichever is encountered earlier
+  
 Selecting cells
 ---------------
 
@@ -79,6 +86,8 @@ Data manipulation
   - fill down:  `ctrl`\ +\ `d` (copy formula and format from the upper cell, no edit mode)
   - fill right:  `ctrl`\ +\ `r`  (copy formula and format from the left cell, no edit mode)
   - autocomplete text from adjacent cells in the current column: `alt`\ +\ `arrow down` [*]_
+
+.. [*] with cell(s) selected
 
 * copy data inside cell range
 
@@ -120,8 +129,6 @@ Miscellaneous
   - autosum:  `alt`\ +\ `=`
   - toggle absolute and relative references:  `f4` [*]_
     
-.. [*] the position is reset to the current cell if arrows are used for naviation
-.. [*] with cell(s) selected
 .. [*] other meaning for filtering and data validation, see this `blog post`_
 .. _`blog post`: http://www.accountingweb.com/technology/excel/automating-data-validation-lists-in-excel
 .. [*] when editing a cell with text cursor blinking inside the reference name
