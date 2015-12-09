@@ -29,14 +29,18 @@ Entering data
   - `enter` to go to the "start" of next line (to the column you originally started with, that is where you pressed `tab` or `enter` for the first time [*]_), 
   - `shift`\ +\ `enter` to move up
 
+The described "tabular mode" is an alternative to using arrow keys. If you press an arrow key you switch out of the "mode"
+and the "first column" is reset to the current position.
+
+* press `f2` to edit existing data in the cell
+
+* `alt`\ +\ `enter` inserts linebreak in the cell
+
 .. [*] the position is reset to the current cell if arrows are used for naviation
 
 .. image:: img/Image-1a-blog.png
   :alt: enter and tab
   :class: centered-image
-
-This "mode" is an alternative to using arrow keys. If you press an arrow key you switch out of the "mode"
-and the "first column" is reset to the current position.
 
 Moving around
 -------------
