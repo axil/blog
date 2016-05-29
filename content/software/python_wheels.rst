@@ -10,7 +10,7 @@ To be able to install wheel files with a simple doubleclick on them you can do o
 #. Run those commands in command line under administrator privileges::
 
        assoc .whl=pythonwheel
-       ftype pythonwheel=cmd /c "pip.exe install %1 & pause"
+       ftype pythonwheel=cmd /c pip.exe install "%1" & pause
 
 #. Alternatively, they can be copied into a wheel.bat file and executed with 'Run as administrator' checkbox in the properties.
 
