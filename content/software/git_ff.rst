@@ -22,8 +22,7 @@ and shows all kind of relevant info if there's an error.
 2. Copy the script:
 
    | (linux) to any directory in your path on linux (eg ~/bin provided it is in the path)
-
-   | (windows) to "C:\\Program Files\\Git\\libexec\\git-core" (use your git installation path if it is different)
+   | (windows) to "C:\\Program Files\\Git\\libexec\\git-core" or "C:\\Program Files\\Git\\mingw64\\libexec\\git-core" (use your git installation path if it is different)
 
 PS The script itself
 
