@@ -8,7 +8,7 @@ I've written a python script that implements::
 
         git ff
 
-which does you would expect it to: it fast-forwards the current branch against its tracking branch
+which does what you would expect it to: it fast-forwards the current branch against its tracking branch
 and shows all kind of relevant info if there's an error.
 
 **Prerequisites:**
