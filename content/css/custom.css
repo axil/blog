@@ -100,3 +100,9 @@ article h2 {
     clear: both;
     margin-top: 20px;
 }
+
+.align-center {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
