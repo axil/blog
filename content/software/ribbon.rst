@@ -15,7 +15,7 @@ Three things to do about ribbon to make it usable:
 2) Revert 'Open' and 'Save' dialogs to traditional form (the new form is called "Backstage"):
 "File | Options | Save | Don't show the Backstage when opening or saving files"
 
-This way Open and Save buttons open the file dialog directly (instead of going though File | Open 
+This way Open and Save buttons open the file dialog directly (instead of weeding through File | Open 
 | Computer | Browse)
 
 3) Add 'Clear Formats' button, which deserves to be a big button on its own rather 
