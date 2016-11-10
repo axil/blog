@@ -1,5 +1,5 @@
-Improving the ribbon
-####################
+Improving the MS Office ribbon
+##############################
 
 :tags: microsoft, office, ribbon, save, backstage, clear, windows
 :date: 2016-11-10 17:37
