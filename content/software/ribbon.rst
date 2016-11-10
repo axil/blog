@@ -19,7 +19,7 @@ This way Open and Save buttons open the file dialog directly (instead of going t
 | Computer | Browse)
 
 3) Add 'Clear Formats' button, which deserves to be a big button on its own rather 
-than a small icon inside another small icon 'Clear':
+than a small icon inside yet another small icon 'Clear':
 
 .. image:: img/format_section.png
   :alt: Format section
