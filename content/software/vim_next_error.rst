@@ -2,7 +2,7 @@ Jump to next error in vim
 #########################
 
 :tags: vim, quickfix, cnext, .vimrc
-:date: 2015-05-26 17:00
+:date: 2015-12-07 22:00
 
 vim can check syntax as you type using quickfix feature.
 To jump to next/previous error you need to write :cnext or :cprev in 
