@@ -1,5 +1,5 @@
-How to open .ipynb file with one doubleclick
-############################################
+How to open .ipynb file with one doubleclick on Windows
+#######################################################
 
 :tags: python, ipynb, jupyter, notebook
 :date: 2017-01-11 11:36
