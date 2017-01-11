@@ -5,10 +5,7 @@ How to open .ipynb file with one doubleclick on Windows
 :date: 2017-01-11 11:36
 
 
-To be able to open .ipynb jupyter notebook files with a simple doubleclick on them you can do one the following:
-
-
-#. Best of all,
+To be able to open .ipynb jupyter notebook files with a simple doubleclick on them run this in the command line::
 
     pip install nbopen
     python -m nbopen.install_win
