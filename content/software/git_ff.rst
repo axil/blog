@@ -4,7 +4,7 @@ git fast-forward
 :tags: git, linux, windows, fast-forward
 :date: 2016-11-07 20:03
 
-I've written a python script that implements::
+I've written a python script named::
 
         git ff
 
