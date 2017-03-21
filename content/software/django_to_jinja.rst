@@ -2,6 +2,7 @@ Django templates to Jinja2 dictionary
 #####################################
 
 :tags: django, jinja2, templates
+:date: 2017-03-21 13:20
 
 .. container:: graytable
 
