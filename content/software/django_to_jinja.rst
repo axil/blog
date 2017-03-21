@@ -18,6 +18,8 @@ Django templates to Jinja2 dictionary
     +--------------------------------+-----------------------------------------+
     | {{ v \| default_if_none:"-" }} | {{ v if v is not None else '-' }}\ [*]_ |
     +--------------------------------+-----------------------------------------+
+    | {{ d \| date:"Y m d H M S" }}  | {{ d.strftime('%Y-%m-%d %H:%M:%S') }}   |
+    +--------------------------------+-----------------------------------------+
 
 .. [*] http://stackoverflow.com/questions/11146619/suppress-none-output-as-string-in-jinja2
 
