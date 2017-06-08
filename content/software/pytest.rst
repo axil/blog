@@ -6,28 +6,30 @@ Pytest vs standard django tests
 By default both testing frameworks rely on transactions for test cases isolation.
 But the details are different.
 
-Standard django test framework works like that. Consider the following testcase::
+Standard django test framework works like that. Consider the following testcase:
 
-    from django.test import TestCase
-    from django.contrib.auth.models import User
+.. code:: python
 
-    def get_users():
-        return repr(list(u.username for u in User.objects.all()))
+        from django.test import TestCase
+        from django.contrib.auth.models import User
 
-    class UserTest(TestCase):
-        def setUp(self):
-            User.objects.create(username='a')
-            print('setup: ' + get_users())
+        def get_users():
+            return repr(list(u.username for u in User.objects.all()))
 
-        def test1(self):
-            User.objects.create(username='b')
-            print('test1: ' + get_users())
+        class UserTest(TestCase):
+            def setUp(self):
+                User.objects.create(username='a')
+                print('setup: ' + get_users())
 
-        def test2(self):
-            User.objects.create(username='c')
-            print('test2: ' + get_users())
+            def test1(self):
+                User.objects.create(username='b')
+                print('test1: ' + get_users())
 
-It prints::
+            def test2(self):
+                User.objects.create(username='c')
+                print('test2: ' + get_users())
+
+It prints ("pytest test.py")::
 
     setup: ['a']
     test1: ['a', 'b']
@@ -36,11 +38,13 @@ It prints::
 
 Which corresponds to the following transaction layout::
 
-    start transaction -> setup -> test1 -> rollback
+    start transaction -> setup -> test1 -> rollback ->
     start transaction -> setup -> test2 -> rollback
 
 
-By default in pytest the same algorithm is used::
+By default in pytest the same algorithm is used:
+
+.. code:: python
 
     import pytest
     from django.contrib.auth.models import User
@@ -68,8 +72,10 @@ By default in pytest the same algorithm is used::
     setup: ['a']
     test2: ['a', 'c']
 
-Now consider a situation when setup takes more time to run than db creation. In pytest it is possible
-to do such a trick::
+Now consider a situation where the setup function takes a long time to run. In pytest it is possible
+to do such a trick then:
+
+.. code:: python
 
     import pytest
     from django.contrib.auth.models import User
@@ -93,21 +99,23 @@ to do such a trick::
         User.objects.create(username='c')
         print('test2: ' + get_users())
 
-It prints::
+which prints::
 
     setup: ['a']
     test1: ['a', 'b']
     test2: ['a', 'c']
 
-So the transactions are like that::
+So the transactions layout is like that::
 
-    setup
-    start transaction -> test1 -> rollback
+    setup ->
+    start transaction -> test1 -> rollback ->
     start transaction -> test2 -> rollback
 
-Which can be used with `--reuse-db` flag to save db creation time, but at a cost of losing isolation between executions of the setup function in the subsequent test runs. (switching from create to get_or_create will adapt the test to 'a' being kept in db between runs). 
+It can be used with `--reuse-db` flag to save db creation time, but at a cost of losing isolation between executions of the setup function in the subsequent test runs. To avoid 'User a already exists' situation we can move from `User.objects.create` to `User.objects.get_or_create` call, but it leaves the db in a dirty state.
 
-To keep test database clean, manual deletion of all records created in setup function is necessary, but doing so is error-prone (you need to keep in mind that you should delete each record you create in setup). In pytest cleanup is implemented in the same setup function using the generators technique::
+To keep test database clean, manual deletion of all records created in setup function is necessary, but doing so is error-prone (you need to keep in mind that you should delete each record you create in setup). In pytest cleanup is supposed to be implemented in the same setup function using the generators technique:
+
+.. code:: python
 
     import pytest
     from django.contrib.auth.models import User
