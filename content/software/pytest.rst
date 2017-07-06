@@ -6,7 +6,7 @@ Pytest vs standard django tests
 By default both testing frameworks rely on transactions for test cases isolation.
 But the details are different.
 
-Standard django test framework works like that. Consider the following testcase:
+To see how django test framework works consider the following testcase:
 
 .. code:: python
 
@@ -111,7 +111,7 @@ So the transactions layout is like that::
     start transaction -> test1 -> rollback ->
     start transaction -> test2 -> rollback
 
-It can be used with `--reuse-db` flag to save db creation time, but at a cost of losing isolation between executions of the setup function in the subsequent test runs. To avoid 'User a already exists' situation we can move from `User.objects.create` to `User.objects.get_or_create` call, but it leaves the db in a dirty state.
+It can be used with "--reuse-db" flag to save db creation time, but at a cost of losing isolation between executions of the setup function in the subsequent test runs. To avoid 'User a already exists' situation we can change "User.objects.create" to "User.objects.get_or_create", but it leaves the db in a dirty state.
 
 To keep test database clean, manual deletion of all records created in setup function is necessary, but doing so is error-prone (you need to keep in mind that you should delete each record you create in setup). In pytest cleanup is supposed to be implemented in the same setup function using the generators technique:
 
