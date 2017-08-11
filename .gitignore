@@ -4,3 +4,4 @@ output
 /Makefile
 /fabfile.py
 /pelican-elegant
+/env
