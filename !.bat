@@ -1,1 +1,1 @@
-@pelican
+env\Scripts\pelican.exe
