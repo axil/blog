@@ -11,6 +11,12 @@ I've written a python script named::
 which does what you would expect it to: it fast-forwards the current branch against its tracking branch
 and shows all kind of relevant info if there's an error.
 
+**Update:**
+
+As of 2020 it can be done simpler:
+
+| git config --global ff "merge --ff-only"
+
 **Prerequisites:**
 
 | python of any version (preferably 2.7.x or 3.5.x)
