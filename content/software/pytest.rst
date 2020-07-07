@@ -2,6 +2,7 @@ Pytest vs standard django tests
 ###############################
 
 :tags: pytest, django, python
+:date: 2017-06-08 13:30
 
 By default both testing frameworks rely on transactions for test cases isolation.
 But the details are different.

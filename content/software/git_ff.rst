@@ -4,22 +4,24 @@ git fast-forward
 :tags: git, linux, windows, fast-forward
 :date: 2016-11-07 20:03
 
-I've written a python script named::
+Running `git merge` with `--ff-only` argument is a nice precaution to avoid unnecessary merges. 
 
-        git ff
-
-which does what you would expect it to: it fast-forwards the current branch against its tracking branch
-and shows all kind of relevant info if there's an error.
-
-**Update:**
-
-As of 2020 it can be done simpler:
+It is convenient to abbreviate it as `git ff`:
 
 | git config --global ff "merge --ff-only"
 
+
+----------------
+
+In the earlier versions of django this command didn't go out of the box. 
+
+The script below did pretty much the same as `git merge --ff-only` does now: it fast-forwards 
+the current branch against its tracking branch and shows all kind of relevant info if there's 
+an error.
+
 **Prerequisites:**
 
-| python of any version (preferably 2.7.x or 3.5.x)
+| python of any version (>=2.7 or >=3.5)
 
 **Installation:**
 
