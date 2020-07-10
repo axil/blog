@@ -5,7 +5,7 @@
 
     Lexers for non-HTML markup languages.
 
-    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -222,10 +222,9 @@ class RstLexer(RegexLexer):
                       Punctuation, Text, using(this, state='inline'))),
             # Comments
             (r'^ *\.\..*(\n( +.*\n|\n)+)?', Comment.Preproc),
-            # Field list
-            (r'^( *)(:[a-zA-Z-]+:)(\s*)$', bygroups(Text, Name.Class, Text)),
-            (r'^( *)(:.*?:)([ \t]+)(.*?)$',
-             bygroups(Text, Name.Class, Text, Name.Function)),
+            # Field list marker
+            (r'^( *)(:(?:\\\\|\\:|[^:\n])+:(?=\s))([ \t]*)',
+             bygroups(Text, Name.Class, Text)),
             # Definition list
             (r'^(\S.*(?<!::)\n)((?:(?: +.*)\n)+)',
              bygroups(using(this, state='inline'), using(this, state='inline'))),
@@ -536,10 +535,9 @@ class MarkdownLexer(RegexLexer):
         # no lexer for this language. handle it like it was a code block
         if lexer is None:
             yield match.start(4), String, code
-            return
-
-        for item in do_insertions([], lexer.get_tokens_unprocessed(code)):
-            yield item
+        else:
+            for item in do_insertions([], lexer.get_tokens_unprocessed(code)):
+                yield item
 
         yield match.start(5), String        , match.group(5)
 
@@ -583,6 +581,11 @@ class MarkdownLexer(RegexLexer):
             (r'[@#][\w/:]+', Name.Entity),
             # (image?) links eg: ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
             (r'(!?\[)([^]]+)(\])(\()([^)]+)(\))', bygroups(Text, Name.Tag, Text, Text, Name.Attribute, Text)),
+            # reference-style links, e.g.:
+            #   [an example][id]
+            #   [id]: http://example.com/
+            (r'(\[)([^]]+)(\])(\[)([^]]*)(\])', bygroups(Text, Name.Tag, Text, Text, Name.Label, Text)),
+            (r'^(\s*\[)([^]]*)(\]:\s*)(.+)', bygroups(Text, Name.Label, Text, Name.Attribute)),
 
             # general text, must come last!
             (r'[^\\\s]+', Text),

@@ -5,7 +5,7 @@
 
     Lexers for Lispy languages.
 
-    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -19,7 +19,7 @@ from pygments.lexers.python import PythonLexer
 
 __all__ = ['SchemeLexer', 'CommonLispLexer', 'HyLexer', 'RacketLexer',
            'NewLispLexer', 'EmacsLispLexer', 'ShenLexer', 'CPSALexer',
-           'XtlangLexer']
+           'XtlangLexer', 'FennelLexer']
 
 
 class SchemeLexer(RegexLexer):
@@ -139,7 +139,7 @@ class SchemeLexer(RegexLexer):
             (r"(?<=#\()" + valid_name, Name.Variable),
 
             # highlight the builtins
-            ("(?<=\()(%s)" % '|'.join(re.escape(entry) + ' ' for entry in builtins),
+            (r"(?<=\()(%s)" % '|'.join(re.escape(entry) + ' ' for entry in builtins),
              Name.Builtin),
 
             # the remaining functions
@@ -321,7 +321,7 @@ class CommonLispLexer(RegexLexer):
             (r'#\d+#', Operator),
 
             # read-time comment
-            (r'#+nil' + terminated + '\s*\(', Comment.Preproc, 'commented-form'),
+            (r'#+nil' + terminated + r'\s*\(', Comment.Preproc, 'commented-form'),
 
             # read-time conditional
             (r'#[+-]', Operator),
@@ -333,7 +333,7 @@ class CommonLispLexer(RegexLexer):
             (r'(t|nil)' + terminated, Name.Constant),
 
             # functions and variables
-            (r'\*' + symbol + '\*', Name.Variable.Global),
+            (r'\*' + symbol + r'\*', Name.Variable.Global),
             (symbol, Name.Variable),
 
             # parentheses
@@ -382,7 +382,7 @@ class HyLexer(RegexLexer):
     # valid names for identifiers
     # well, names can only not consist fully of numbers
     # but this should be good enough for now
-    valid_name = r'(?!#)[\w!$%*+<=>?/.#-]+'
+    valid_name = r'(?!#)[\w!$%*+<=>?/.#-:]+'
 
     def _multi_escape(entries):
         return words(entries, suffix=' ')
@@ -1249,7 +1249,7 @@ class RacketLexer(RegexLexer):
     _opening_parenthesis = r'[([{]'
     _closing_parenthesis = r'[)\]}]'
     _delimiters = r'()[\]{}",\'`;\s'
-    _symbol = r'(?u)(?:\|[^|]*\||\\[\w\W]|[^|\\%s]+)+' % _delimiters
+    _symbol = r'(?:\|[^|]*\||\\[\w\W]|[^|\\%s]+)+' % _delimiters
     _exact_decimal_prefix = r'(?:#e)?(?:#d)?(?:#e)?'
     _exponent = r'(?:[defls][-+]?\d+)'
     _inexact_simple_no_hashes = r'(?:\d+(?:/\d+|\.\d*)?|\.\d+)'
@@ -1301,16 +1301,16 @@ class RacketLexer(RegexLexer):
              (_inexact_simple, _delimiters), Number.Float, '#pop'),
 
             # #b
-            (r'(?i)(#[ei])?#b%s' % _symbol, Number.Bin, '#pop'),
+            (r'(?iu)(#[ei])?#b%s' % _symbol, Number.Bin, '#pop'),
 
             # #o
-            (r'(?i)(#[ei])?#o%s' % _symbol, Number.Oct, '#pop'),
+            (r'(?iu)(#[ei])?#o%s' % _symbol, Number.Oct, '#pop'),
 
             # #x
-            (r'(?i)(#[ei])?#x%s' % _symbol, Number.Hex, '#pop'),
+            (r'(?iu)(#[ei])?#x%s' % _symbol, Number.Hex, '#pop'),
 
             # #i is always inexact, i.e. float
-            (r'(?i)(#d)?#i%s' % _symbol, Number.Float, '#pop'),
+            (r'(?iu)(#d)?#i%s' % _symbol, Number.Float, '#pop'),
 
             # Strings and characters
             (r'#?"', String.Double, ('#pop', 'string')),
@@ -1323,7 +1323,7 @@ class RacketLexer(RegexLexer):
             (r'#(true|false|[tTfF])', Name.Constant, '#pop'),
 
             # Keyword argument names (e.g. #:keyword)
-            (r'#:%s' % _symbol, Keyword.Declaration, '#pop'),
+            (r'(?u)#:%s' % _symbol, Keyword.Declaration, '#pop'),
 
             # Reader extensions
             (r'(#lang |#!)(\S+)',
@@ -1400,7 +1400,7 @@ class RacketLexer(RegexLexer):
 
 class NewLispLexer(RegexLexer):
     """
-    For `newLISP. <www.newlisp.org>`_ source code (version 10.3.0).
+    For `newLISP. <http://www.newlisp.org/>`_ source code (version 10.3.0).
 
     .. versionadded:: 1.5
     """
@@ -1554,7 +1554,7 @@ class EmacsLispLexer(RegexLexer):
     # Take a deep breath...
     symbol = r'((?:%s)(?:%s)*)' % (nonmacro, constituent)
 
-    macros = set((
+    macros = {
         'atomic-change-group', 'case', 'block', 'cl-block', 'cl-callf', 'cl-callf2',
         'cl-case', 'cl-decf', 'cl-declaim', 'cl-declare',
         'cl-define-compiler-macro', 'cl-defmacro', 'cl-defstruct',
@@ -1601,17 +1601,17 @@ class EmacsLispLexer(RegexLexer):
         'with-tramp-file-property', 'with-tramp-progress-reporter',
         'with-wrapper-hook', 'load-time-value', 'locally', 'macrolet', 'progv',
         'return-from',
-    ))
+    }
 
-    special_forms = set((
+    special_forms = {
         'and', 'catch', 'cond', 'condition-case', 'defconst', 'defvar',
         'function', 'if', 'interactive', 'let', 'let*', 'or', 'prog1',
         'prog2', 'progn', 'quote', 'save-current-buffer', 'save-excursion',
         'save-restriction', 'setq', 'setq-default', 'subr-arity',
         'unwind-protect', 'while',
-    ))
+    }
 
-    builtin_function = set((
+    builtin_function = {
         '%', '*', '+', '-', '/', '/=', '1+', '1-', '<', '<=', '=', '>', '>=',
         'Snarf-documentation', 'abort-recursive-edit', 'abs',
         'accept-process-output', 'access-file', 'accessible-keymaps', 'acos',
@@ -1937,8 +1937,9 @@ class EmacsLispLexer(RegexLexer):
         'split-window-internal', 'sqrt', 'standard-case-table',
         'standard-category-table', 'standard-syntax-table', 'start-kbd-macro',
         'start-process', 'stop-process', 'store-kbd-macro-event', 'string',
-        'string-as-multibyte', 'string-as-unibyte', 'string-bytes',
-        'string-collate-equalp', 'string-collate-lessp', 'string-equal',
+        'string=', 'string<', 'string>', 'string-as-multibyte',
+        'string-as-unibyte', 'string-bytes', 'string-collate-equalp',
+        'string-collate-lessp', 'string-equal', 'string-greaterp',
         'string-lessp', 'string-make-multibyte', 'string-make-unibyte',
         'string-match', 'string-to-char', 'string-to-multibyte',
         'string-to-number', 'string-to-syntax', 'string-to-unibyte',
@@ -2050,23 +2051,23 @@ class EmacsLispLexer(RegexLexer):
         'xw-color-values', 'xw-display-color-p', 'xw-display-color-p',
         'yes-or-no-p', 'zlib-available-p', 'zlib-decompress-region',
         'forward-point',
-    ))
+    }
 
-    builtin_function_highlighted = set((
+    builtin_function_highlighted = {
         'defvaralias', 'provide', 'require',
         'with-no-warnings', 'define-widget', 'with-electric-help',
         'throw', 'defalias', 'featurep'
-    ))
+    }
 
-    lambda_list_keywords = set((
+    lambda_list_keywords = {
         '&allow-other-keys', '&aux', '&body', '&environment', '&key', '&optional',
         '&rest', '&whole',
-    ))
+    }
 
-    error_keywords = set((
+    error_keywords = {
         'cl-assert', 'cl-check-type', 'error', 'signal',
         'user-error', 'warn',
-    ))
+    }
 
     def get_tokens_unprocessed(self, text):
         stack = ['root']
@@ -2154,7 +2155,7 @@ class EmacsLispLexer(RegexLexer):
             (r'(t|nil)' + terminated, Name.Constant),
 
             # functions and variables
-            (r'\*' + symbol + '\*', Name.Variable.Global),
+            (r'\*' + symbol + r'\*', Name.Variable.Global),
             (symbol, Name.Variable),
 
             # parentheses
@@ -2225,7 +2226,7 @@ class ShenLexer(RegexLexer):
 
     BUILTINS_ANYWHERE = ('where', 'skip', '>>', '_', '!', '<e>', '<!>')
 
-    MAPPINGS = dict((s, Keyword) for s in DECLARATIONS)
+    MAPPINGS = {s: Keyword for s in DECLARATIONS}
     MAPPINGS.update((s, Name.Builtin) for s in BUILTINS)
     MAPPINGS.update((s, Keyword) for s in SPECIAL_FORMS)
 
@@ -2327,13 +2328,13 @@ class ShenLexer(RegexLexer):
             token = Name.Function if token == Literal else token
             yield index, token, value
 
-        raise StopIteration
+        return
 
     def _process_signature(self, tokens):
         for index, token, value in tokens:
             if token == Literal and value == '}':
                 yield index, Punctuation, value
-                raise StopIteration
+                return
             elif token in (Literal, Name.Function):
                 token = Name.Variable if value.istitle() else Keyword.Type
             yield index, token, value
@@ -2618,4 +2619,76 @@ class XtlangLexer(RegexLexer):
 
             include('scheme')
         ],
+    }
+
+
+class FennelLexer(RegexLexer):
+    """A lexer for the `Fennel programming language <https://fennel-lang.org>`_.
+
+    Fennel compiles to Lua, so all the Lua builtins are recognized as well
+    as the special forms that are particular to the Fennel compiler.
+
+    .. versionadded:: 2.3
+    """
+    name = 'Fennel'
+    aliases = ['fennel', 'fnl']
+    filenames = ['*.fnl']
+
+    # these two lists are taken from fennel-mode.el:
+    # https://gitlab.com/technomancy/fennel-mode
+    # this list is current as of Fennel version 0.1.0.
+    special_forms = (
+        u'require-macros', u'eval-compiler',
+        u'do', u'values', u'if', u'when', u'each', u'for', u'fn', u'lambda',
+        u'λ', u'set', u'global', u'var', u'local', u'let', u'tset', u'doto',
+        u'set-forcibly!', u'defn', u'partial', u'while', u'or', u'and', u'true',
+        u'false', u'nil', u'.', u'+', u'..', u'^', u'-', u'*', u'%', u'/', u'>',
+        u'<', u'>=', u'<=', u'=', u'~=', u'#', u'...', u':', u'->', u'->>',
+    )
+
+    # Might be nicer to use the list from _lua_builtins.py but it's unclear how?
+    builtins = (
+        u'_G', u'_VERSION', u'arg', u'assert', u'bit32', u'collectgarbage',
+        u'coroutine', u'debug', u'dofile', u'error', u'getfenv',
+        u'getmetatable', u'io', u'ipairs', u'load', u'loadfile', u'loadstring',
+        u'math', u'next', u'os', u'package', u'pairs', u'pcall', u'print',
+        u'rawequal', u'rawget', u'rawlen', u'rawset', u'require', u'select',
+        u'setfenv', u'setmetatable', u'string', u'table', u'tonumber',
+        u'tostring', u'type', u'unpack', u'xpcall'
+    )
+
+    # based on the scheme definition, but disallowing leading digits and commas
+    valid_name = r'[a-zA-Z_!$%&*+/:<=>?@^~|-][\w!$%&*+/:<=>?@^~|\.-]*'
+
+    tokens = {
+        'root': [
+            # the only comment form is a semicolon; goes to the end of the line
+            (r';.*$', Comment.Single),
+
+            (r'[,\s]+', Text),
+            (r'-?\d+\.\d+', Number.Float),
+            (r'-?\d+', Number.Integer),
+
+            (r'"(\\\\|\\"|[^"])*"', String),
+            (r"'(\\\\|\\'|[^'])*'", String),
+
+            # these are technically strings, but it's worth visually
+            # distinguishing them because their intent is different
+            # from regular strings.
+            (r':' + valid_name, String.Symbol),
+
+            # special forms are keywords
+            (words(special_forms, suffix=' '), Keyword),
+            # lua standard library are builtins
+            (words(builtins, suffix=' '), Name.Builtin),
+            # special-case the vararg symbol
+            (r'\.\.\.', Name.Variable),
+            # regular identifiers
+            (valid_name, Name.Variable),
+
+            # all your normal paired delimiters for your programming enjoyment
+            (r'(\(|\))', Punctuation),
+            (r'(\[|\])', Punctuation),
+            (r'(\{|\})', Punctuation),
+        ]
     }

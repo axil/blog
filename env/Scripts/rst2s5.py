@@ -1,4 +1,4 @@
-#!d:\documents\blog\env\scripts\python.exe
+#!C:\Documents\blog\env\Scripts\python.exe
 
 # $Id: rst2s5.py 4564 2006-05-21 20:44:42Z wiemann $
 # Author: Chris Liechti <cliechti@gmx.net>

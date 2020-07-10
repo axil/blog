@@ -5,7 +5,7 @@
 
     Lexers for misc. web stuff.
 
-    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -158,6 +158,9 @@ class XQueryLexer(ExtendedRegexLexer):
         # state stack
         if len(lexer.xquery_parse_state) == 0:
             ctx.stack.pop()
+            if not ctx.stack:
+                # make sure we have at least the root state on invalid inputs
+                ctx.stack = ['root']
         elif len(ctx.stack) > 1:
             ctx.stack.append(lexer.xquery_parse_state.pop())
         else:
@@ -438,7 +441,7 @@ class XQueryLexer(ExtendedRegexLexer):
         ],
         'varname': [
             (r'\(:', Comment, 'comment'),
-            (r'(' + qname + ')(\()?', bygroups(Name, Punctuation), 'operator'),
+            (r'(' + qname + r')(\()?', bygroups(Name, Punctuation), 'operator'),
         ],
         'singletype': [
             include('whitespace'),
@@ -643,9 +646,9 @@ class XQueryLexer(ExtendedRegexLexer):
              bygroups(Keyword.Declaration, Text, Keyword.Declaration, Text, Keyword.Declaration), 'operator'),
             (r'(declare)(\s+)(context)(\s+)(item)',
              bygroups(Keyword.Declaration, Text, Keyword.Declaration, Text, Keyword.Declaration), 'operator'),
-            (ncname + ':\*', Name, 'operator'),
-            ('\*:'+ncname, Name.Tag, 'operator'),
-            ('\*', Name.Tag, 'operator'),
+            (ncname + r':\*', Name, 'operator'),
+            (r'\*:'+ncname, Name.Tag, 'operator'),
+            (r'\*', Name.Tag, 'operator'),
             (stringdouble, String.Double, 'operator'),
             (stringsingle, String.Single, 'operator'),
 
@@ -661,7 +664,8 @@ class XQueryLexer(ExtendedRegexLexer):
 
             # NAMESPACE KEYWORD
             (r'(declare)(\s+)(default)(\s+)(element|function)',
-             bygroups(Keyword.Declaration, Text, Keyword.Declaration, Text, Keyword.Declaration), 'namespacekeyword'),
+             bygroups(Keyword.Declaration, Text, Keyword.Declaration, Text, Keyword.Declaration),
+             'namespacekeyword'),
             (r'(import)(\s+)(schema|module)',
              bygroups(Keyword.Pseudo, Text, Keyword.Pseudo), 'namespacekeyword'),
             (r'(declare)(\s+)(copy-namespaces)',
@@ -861,7 +865,7 @@ class QmlLexer(RegexLexer):
 
 
 class CirruLexer(RegexLexer):
-    """
+    r"""
     Syntax rules of Cirru can be found at:
     http://cirru.org/
 

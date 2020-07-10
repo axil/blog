@@ -5,7 +5,7 @@
 
     Lexers for Erlang.
 
-    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -163,7 +163,7 @@ class ErlangShellLexer(Lexer):
     filenames = ['*.erl-sh']
     mimetypes = ['text/x-erl-shellsession']
 
-    _prompt_re = re.compile(r'\d+>(?=\s|\Z)')
+    _prompt_re = re.compile(r'(?:\([\w@_.]+\))?\d+>(?=\s|\Z)')
 
     def get_tokens_unprocessed(self, text):
         erlexer = ErlangLexer(**self.options)
@@ -233,7 +233,7 @@ class ElixirLexer(RegexLexer):
 
     name = 'Elixir'
     aliases = ['elixir', 'ex', 'exs']
-    filenames = ['*.ex', '*.exs']
+    filenames = ['*.ex', '*.eex', '*.exs']
     mimetypes = ['text/x-elixir']
 
     KEYWORD = ('fn', 'do', 'end', 'after', 'else', 'rescue', 'catch')
@@ -344,7 +344,7 @@ class ElixirLexer(RegexLexer):
     op1_re = "|".join(re.escape(s) for s in OPERATORS1)
     ops_re = r'(?:%s|%s|%s)' % (op3_re, op2_re, op1_re)
     punctuation_re = "|".join(re.escape(s) for s in PUNCTUATION)
-    alnum = '\w'
+    alnum = r'\w'
     name_re = r'(?:\.\.\.|[a-z_]%s*[!?]?)' % alnum
     modname_re = r'[A-Z]%(alnum)s*(?:\.[A-Z]%(alnum)s*)*' % {'alnum': alnum}
     complex_name_re = r'(?:%s|%s|%s)' % (name_re, modname_re, ops_re)
@@ -495,7 +495,7 @@ class ElixirConsoleLexer(Lexer):
     aliases = ['iex']
     mimetypes = ['text/x-elixir-shellsession']
 
-    _prompt_re = re.compile('(iex|\.{3})(\(\d+\))?> ')
+    _prompt_re = re.compile(r'(iex|\.{3})((?:\([\w@_.]+\))?\d+|\(\d+\))?> ')
 
     def get_tokens_unprocessed(self, text):
         exlexer = ElixirLexer(**self.options)

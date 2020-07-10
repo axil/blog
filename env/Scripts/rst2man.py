@@ -1,6 +1,6 @@
-#!d:\documents\blog\env\scripts\python.exe
+#!C:\Documents\blog\env\Scripts\python.exe
 
-# Author: 
+# Author:
 # Contact: grubert@users.sf.net
 # Copyright: This module has been placed in the public domain.
 

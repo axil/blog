@@ -5,7 +5,7 @@
 
     Lexers for various template engines' markup.
 
-    :copyright: Copyright 2006-2017 by the Pygments team, see AUTHORS.
+    :copyright: Copyright 2006-2019 by the Pygments team, see AUTHORS.
     :license: BSD, see LICENSE for details.
 """
 
@@ -187,13 +187,13 @@ class SmartyLexer(RegexLexer):
 
     def analyse_text(text):
         rv = 0.0
-        if re.search('\{if\s+.*?\}.*?\{/if\}', text):
+        if re.search(r'\{if\s+.*?\}.*?\{/if\}', text):
             rv += 0.15
-        if re.search('\{include\s+file=.*?\}', text):
+        if re.search(r'\{include\s+file=.*?\}', text):
             rv += 0.15
-        if re.search('\{foreach\s+.*?\}.*?\{/foreach\}', text):
+        if re.search(r'\{foreach\s+.*?\}.*?\{/foreach\}', text):
             rv += 0.15
-        if re.search('\{\$.*?\}', text):
+        if re.search(r'\{\$.*?\}', text):
             rv += 0.01
         return rv
 
@@ -226,7 +226,7 @@ class VelocityLexer(RegexLexer):
              'directiveparams'),
             (r'(#\{?)(' + identifier + r')(\}|\b)',
              bygroups(Comment.Preproc, Name.Function, Comment.Preproc)),
-            (r'\$\{?', Punctuation, 'variable')
+            (r'\$!?\{?', Punctuation, 'variable')
         ],
         'variable': [
             (identifier, Name.Variable),
@@ -249,7 +249,7 @@ class VelocityLexer(RegexLexer):
             (r'\]', Operator, '#pop')
         ],
         'funcparams': [
-            (r'\$\{?', Punctuation, 'variable'),
+            (r'\$!?\{?', Punctuation, 'variable'),
             (r'\s+', Text),
             (r'[,:]', Punctuation),
             (r'"(\\\\|\\"|[^"])*"', String.Double),
@@ -274,7 +274,7 @@ class VelocityLexer(RegexLexer):
             rv += 0.15
         if re.search(r'#\{?foreach\}?\(.+?\).*?#\{?end\}?', text):
             rv += 0.15
-        if re.search(r'\$\{?[a-zA-Z_]\w*(\([^)]*\))?'
+        if re.search(r'\$!?\{?[a-zA-Z_]\w*(\([^)]*\))?'
                      r'(\.\w+(\([^)]*\))?)*\}?', text):
             rv += 0.01
         return rv
@@ -323,7 +323,7 @@ class VelocityXmlLexer(DelegatingLexer):
 class DjangoLexer(RegexLexer):
     """
     Generic `django <http://www.djangoproject.com/documentation/templates/>`_
-    and `jinja <http://wsgiarea.pocoo.org/jinja/>`_ template lexer.
+    and `jinja <https://jinja.pocoo.org/jinja/>`_ template lexer.
 
     It just highlights django/jinja code between the preprocessor directives,
     other data is left untouched by the lexer.
@@ -375,7 +375,7 @@ class DjangoLexer(RegexLexer):
             (r'\.\w+', Name.Variable),
             (r':?"(\\\\|\\"|[^"])*"', String.Double),
             (r":?'(\\\\|\\'|[^'])*'", String.Single),
-            (r'([{}()\[\]+\-*/,:~]|[><=]=?)', Operator),
+            (r'([{}()\[\]+\-*/%,:~]|[><=]=?|!=)', Operator),
             (r"[0-9](\.[0-9]*)?(eE[+-][0-9])?[flFLdD]?|"
              r"0[xX][0-9a-fA-F]+[Ll]?", Number),
         ],
@@ -421,18 +421,18 @@ class MyghtyLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Text),
-            (r'(<%(?:def|method))(\s*)(.*?)(>)(.*?)(</%\2\s*>)(?s)',
+            (r'(?s)(<%(?:def|method))(\s*)(.*?)(>)(.*?)(</%\2\s*>)',
              bygroups(Name.Tag, Text, Name.Function, Name.Tag,
                       using(this), Name.Tag)),
-            (r'(<%\w+)(.*?)(>)(.*?)(</%\2\s*>)(?s)',
+            (r'(?s)(<%\w+)(.*?)(>)(.*?)(</%\2\s*>)',
              bygroups(Name.Tag, Name.Function, Name.Tag,
                       using(PythonLexer), Name.Tag)),
             (r'(<&[^|])(.*?)(,.*?)?(&>)',
              bygroups(Name.Tag, Name.Function, using(PythonLexer), Name.Tag)),
-            (r'(<&\|)(.*?)(,.*?)?(&>)(?s)',
+            (r'(?s)(<&\|)(.*?)(,.*?)?(&>)',
              bygroups(Name.Tag, Name.Function, using(PythonLexer), Name.Tag)),
             (r'</&>', Name.Tag),
-            (r'(<%!?)(.*?)(%>)(?s)',
+            (r'(?s)(<%!?)(.*?)(%>)',
              bygroups(Name.Tag, using(PythonLexer), Name.Tag)),
             (r'(?<=^)#[^\n]*(\n|\Z)', Comment),
             (r'(?<=^)(%)([^\n]*)(\n|\Z)',
@@ -538,20 +538,20 @@ class MasonLexer(RegexLexer):
     tokens = {
         'root': [
             (r'\s+', Text),
-            (r'(<%doc>)(.*?)(</%doc>)(?s)',
+            (r'(?s)(<%doc>)(.*?)(</%doc>)',
              bygroups(Name.Tag, Comment.Multiline, Name.Tag)),
-            (r'(<%(?:def|method))(\s*)(.*?)(>)(.*?)(</%\2\s*>)(?s)',
+            (r'(?s)(<%(?:def|method))(\s*)(.*?)(>)(.*?)(</%\2\s*>)',
              bygroups(Name.Tag, Text, Name.Function, Name.Tag,
                       using(this), Name.Tag)),
-            (r'(<%\w+)(.*?)(>)(.*?)(</%\2\s*>)(?s)',
+            (r'(?s)(<%\w+)(.*?)(>)(.*?)(</%\2\s*>)',
              bygroups(Name.Tag, Name.Function, Name.Tag,
                       using(PerlLexer), Name.Tag)),
-            (r'(<&[^|])(.*?)(,.*?)?(&>)(?s)',
+            (r'(?s)(<&[^|])(.*?)(,.*?)?(&>)',
              bygroups(Name.Tag, Name.Function, using(PerlLexer), Name.Tag)),
-            (r'(<&\|)(.*?)(,.*?)?(&>)(?s)',
+            (r'(?s)(<&\|)(.*?)(,.*?)?(&>)',
              bygroups(Name.Tag, Name.Function, using(PerlLexer), Name.Tag)),
             (r'</&>', Name.Tag),
-            (r'(<%!?)(.*?)(%>)(?s)',
+            (r'(?s)(<%!?)(.*?)(%>)',
              bygroups(Name.Tag, using(PerlLexer), Name.Tag)),
             (r'(?<=^)#[^\n]*(\n|\Z)', Comment),
             (r'(?<=^)(%)([^\n]*)(\n|\Z)',
@@ -607,7 +607,7 @@ class MakoLexer(RegexLexer):
             (r'(</%)([\w.:]+)(>)',
              bygroups(Comment.Preproc, Name.Builtin, Comment.Preproc)),
             (r'<%(?=([\w.:]+))', Comment.Preproc, 'ondeftags'),
-            (r'(<%(?:!?))(.*?)(%>)(?s)',
+            (r'(?s)(<%(?:!?))(.*?)(%>)',
              bygroups(Comment.Preproc, using(PythonLexer), Comment.Preproc)),
             (r'(\$\{)(.*?)(\})',
              bygroups(Comment.Preproc, using(PythonLexer), Comment.Preproc)),
@@ -759,7 +759,7 @@ class CheetahLexer(RegexLexer):
             # TODO support other Python syntax like $foo['bar']
             (r'(\$)([a-zA-Z_][\w.]*\w)',
              bygroups(Comment.Preproc, using(CheetahPythonLexer))),
-            (r'(\$\{!?)(.*?)(\})(?s)',
+            (r'(?s)(\$\{!?)(.*?)(\})',
              bygroups(Comment.Preproc, using(CheetahPythonLexer),
                       Comment.Preproc)),
             (r'''(?sx)
@@ -942,9 +942,9 @@ class HtmlGenshiLexer(DelegatingLexer):
 
     def analyse_text(text):
         rv = 0.0
-        if re.search('\$\{.*?\}', text) is not None:
+        if re.search(r'\$\{.*?\}', text) is not None:
             rv += 0.2
-        if re.search('py:(.*?)=["\']', text) is not None:
+        if re.search(r'py:(.*?)=["\']', text) is not None:
             rv += 0.2
         return rv + HtmlLexer.analyse_text(text) - 0.01
 
@@ -967,9 +967,9 @@ class GenshiLexer(DelegatingLexer):
 
     def analyse_text(text):
         rv = 0.0
-        if re.search('\$\{.*?\}', text) is not None:
+        if re.search(r'\$\{.*?\}', text) is not None:
             rv += 0.2
-        if re.search('py:(.*?)=["\']', text) is not None:
+        if re.search(r'py:(.*?)=["\']', text) is not None:
             rv += 0.2
         return rv + XmlLexer.analyse_text(text) - 0.01
 
@@ -1627,7 +1627,7 @@ class SspLexer(DelegatingLexer):
 
     def analyse_text(text):
         rv = 0.0
-        if re.search('val \w+\s*:', text):
+        if re.search(r'val \w+\s*:', text):
             rv += 0.6
         if looks_like_xml(text):
             rv += 0.2
@@ -1802,27 +1802,27 @@ class HandlebarsLexer(RegexLexer):
         'root': [
             (r'[^{]+', Other),
 
+            # Comment start {{!  }} or {{!--
             (r'\{\{!.*\}\}', Comment),
 
+            # HTML Escaping open {{{expression
             (r'(\{\{\{)(\s*)', bygroups(Comment.Special, Text), 'tag'),
+
+            # {{blockOpen {{#blockOpen {{/blockClose with optional tilde ~
+            (r'(\{\{)([#~/]+)([^\s}]*)',
+             bygroups(Comment.Preproc, Number.Attribute, Number.Attribute), 'tag'),
             (r'(\{\{)(\s*)', bygroups(Comment.Preproc, Text), 'tag'),
         ],
 
         'tag': [
             (r'\s+', Text),
+            # HTML Escaping close }}}
             (r'\}\}\}', Comment.Special, '#pop'),
-            (r'\}\}', Comment.Preproc, '#pop'),
-
-            # Handlebars
-            (r'([#/]*)(each|if|unless|else|with|log|in(line)?)', bygroups(Keyword,
-             Keyword)),
-            (r'#\*inline', Keyword),
-
-            # General {{#block}}
-            (r'([#/])([\w-]+)', bygroups(Name.Function, Name.Function)),
+            # blockClose}}, includes optional tilde ~
+            (r'(~?)(\}\})', bygroups(Number, Comment.Preproc), '#pop'),
 
             # {{opt=something}}
-            (r'([\w-]+)(=)', bygroups(Name.Attribute, Operator)),
+            (r'([^\s}]+)(=)', bygroups(Name.Attribute, Operator)),
 
             # Partials {{> ...}}
             (r'(>)(\s*)(@partial-block)', bygroups(Keyword, Text, Keyword)),
@@ -1845,7 +1845,7 @@ class HandlebarsLexer(RegexLexer):
             include('generic'),
         ],
         'variable': [
-            (r'[a-zA-Z][\w-]*', Name.Variable),
+            (r'[()/@a-zA-Z][\w-]*', Name.Variable),
             (r'\.[\w-]+', Name.Variable),
             (r'(this\/|\.\/|(\.\.\/)+)[\w-]+', Name.Variable),
         ],
@@ -1955,7 +1955,7 @@ class LiquidLexer(RegexLexer):
 
         'output': [
             include('whitespace'),
-            ('\}\}', Punctuation, '#pop'),  # end of output
+            (r'\}\}', Punctuation, '#pop'),  # end of output
 
             (r'\|', Punctuation, 'filters')
         ],
