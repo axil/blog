@@ -2,6 +2,7 @@ Efficient Table Editing in Microsoft Word
 #########################################
 
 :tags: word, tables, tips
+:date: 2015-07-31 12:00
 
 
 * tables: 

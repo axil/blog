@@ -2,6 +2,7 @@ Essential Microsoft Excel Keyboard Shortcuts
 ############################################
 
 :tags: excel, shortcuts, tips
+:date: 2015-09-09 12:00
 
 The most convenient and the least used shortcut of Excel is:
 

@@ -2,6 +2,7 @@ Enabling "Ctrl-V" in Windows console using Autohotkey
 #####################################################
 
 :tags: cmd.exe, paste, tips
+:date: 2015-07-31 12:00
 
 Follow those three steps and `Ctrl-V` will work in cmd.exe *seamlessly*, even without restarting an already open console.
 
