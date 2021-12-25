@@ -37,7 +37,8 @@ Numpy works best when the width is fixed now so unlike ordinary python the value
         >>> np.array(10).dtype      # could be int64 on a different OS
         dtype('int32')
         >>> np.array(2**31–1)+1     # 2**31-1 is INT_MAX for int32
-        -2147483648>>> np.array(2**63-1)+1    # always np.int64 because v > 2**32-1
+        -2147483648
+        >>> np.array(2**63-1)+1    # always np.int64 because v > 2**32-1
         -9223372036854775808
 
 For performance reasons numpy doesn’t warn you about the overflows happening with arrays — even with zero-dimensional array such as those in the example above. Speaking of zero-dimensional arrays more realistic example where you can run into them is when you iterate over a numpy array with nditer:
@@ -171,7 +172,7 @@ The boolean values are stored as single bytes for better performance. `np.bool_`
         >>> sys.getsizeof(True)
         28
 
-np.bool is 28 times more memory efficient than python’s bool )
+np.bool is 28 times more memory efficient than python’s bool ) It real-world scenarios the rate is lower though: when you pack numpy bools into an array, they will take 1 byte each, but if you pack python bools into a list it will reference the same two values every time, costing effectively 8 bytes per element on x64.
 
 The underlines in `bool_`, `int_`, etc are there to avoid clashes with python’s types. It’s a bad idea to use reserved keywords for other things, but in this case it has an additional advantage of allowing (a generally discouraged, but useful in rare cases) from numpy import * without shadowing python bools, ints, etc. As of today, np.bool still works but displays a deprecation warning.
 
