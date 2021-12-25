@@ -287,7 +287,7 @@ Types for structured dtypes do not necessarily need to be homogenic and can even
 include subarrays.
 
 **************
-6. Type Checks
+7. Type Checks
 **************
 
 One way to check numpy array type is to run isinstance against its element:
