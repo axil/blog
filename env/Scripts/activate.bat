@@ -1,6 +1,6 @@
 @echo off
 
-set "VIRTUAL_ENV=C:\Documents\blog\env"
+set "VIRTUAL_ENV=C:\Documents\z.trash\blog\env"
 
 if defined _OLD_VIRTUAL_PROMPT (
     set "PROMPT=%_OLD_VIRTUAL_PROMPT%"

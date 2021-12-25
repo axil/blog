@@ -1,4 +1,4 @@
-#!C:\Documents\blog\env\Scripts\python.exe
+#!C:\Documents\z.trash\blog\env\Scripts\python.exe
 
 # $Id: rstpep2html.py 4564 2006-05-21 20:44:42Z wiemann $
 # Author: David Goodger <goodger@python.org>

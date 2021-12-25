@@ -1,4 +1,4 @@
-#!C:\Documents\blog\env\Scripts\python.exe
+#!C:\Documents\z.trash\blog\env\Scripts\python.exe
 
 # Author:
 # Contact: grubert@users.sf.net

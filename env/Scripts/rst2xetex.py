@@ -1,4 +1,4 @@
-#!C:\Documents\blog\env\Scripts\python.exe
+#!C:\Documents\z.trash\blog\env\Scripts\python.exe
 
 # $Id: rst2xetex.py 7847 2015-03-17 17:30:47Z milde $
 # Author: Guenter Milde
