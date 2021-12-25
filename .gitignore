@@ -3,5 +3,5 @@ output
 /publishconf.py
 /Makefile
 /fabfile.py
-/pelican-elegant
-/env
+/pelican-elegant/
+/env/

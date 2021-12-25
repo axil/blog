@@ -67,9 +67,9 @@ As for numpy scalars — they are covered by the overflow warnings:
         >>> np.array([2**63–1])[0] + 1
         FloatingPointError: overflow encountered in longlong_scalars
 
-— although the name FloatingPointError for an integer overflow looks a bit misleading.
+The reasoning behind such a discrimination is like this:
 
-    Unlike true floating point errors (where the hardware FPU sets a flag whenever it does an atomic operation that overflows), we need to implement the integer overflow detection ourselves. We do it on the scalars, but not arrays because it would be too slow to implement for every atomic operation on arrays. (Robert Kern, one of numpy core developers)
+    Unlike true floating point errors (where the hardware FPU sets a flag whenever it does an atomic operation that overflows), we need to implement the integer overflow detection ourselves. We do it on the scalars, but not arrays because it would be too slow to implement for every atomic operation on arrays. *Robert Kern, one of the numpy core developers*
 
 You can make it an error
 
@@ -79,7 +79,9 @@ You can make it an error
         >>>    print(np.array([2**31-1])[0]+1)
         FloatingPointError: overflow encountered in long_scalars
 
-or suppress it
+(although the name FloatingPointError for an *integer* overflow looks a bit misleading.)
+
+or suppress it entirely
 
 .. code:: python
 
@@ -91,7 +93,7 @@ But you can’t expect it to be detected when dealing with any arrays.
 
 Numpy also exposes a bunch of aliases (eg. np.intc=int in C, np.int_=long in C, etc) as an attempt to make the code closer to the underlying C code and thus more cross-platform. And yet some more aliases generally for internal usage (like np.intp=ssize_t in C, used in cython)
 
-Finally, if for some reason you need arbitrary-precision integers (python ints) in ndarrays, numpy is capable of doing it:
+Finally, if for some reason you need arbitrary-precision integers (python ints) in ndarrays, numpy is capable of doing it, too:
 
 .. code:: python
 
@@ -188,12 +190,12 @@ Initializing a numpy array with a list of python strings packs them into a fixed
 
 .. code:: python
 
-        >>> np.array([‘abcde’, ‘x’, ‘y’, ‘z’])        # 4 bytes per character
+        >>> np.array(['abcde', 'x', 'y', 'z'])        # 4 bytes per character
         array(['abcde', 'x', 'y', 'z'], dtype='<U5') # 5*4 bytes per element
 
-The abbreviation ‘<U4’ comes from the so called array protocol and it means ‘little-endian USC-4-encoded string, 5 elements long’ (USC-4≈UTF-32, a fixed width, 4-bytes per character encoding).
+The abbreviation ‘<U4’ comes from the so called array protocol and it means ‘little-endian USC-4-encoded string, 5 elements long’ (USC-4≈UTF-32, a fixed width, 4-bytes per character encoding). Every numpy type has an abbreviation as unreadable as this one, luckily they have adopted human-readable names at least for the most used dtypes.
 
-Another option is to keep references to python strs in the numpy array:
+Another option is to keep references to python strs in a numpy array of objects:
 
 .. code:: python
 
@@ -202,22 +204,22 @@ Another option is to keep references to python strs in the numpy array:
 
 The first array totals 164 bytes, the second one is 128 bytes for the array itself +154 bytes for the three python strs.
 
-Numpy also has a fixed-length version of a python bytes type:
+If you're dealing with a raw sequence of bytes numpy has a fixed-length version of a python bytes type called `np.bytes_`:
 
 .. code:: python
 
-        >>> np.array([‘abcde’, ‘x’, ‘y’, ‘z’])        # 1 byte per ascii
+        >>> np.array(['abcde', 'x', 'y', 'z'])        # 1 byte per ascii
         array([b'abcde',b'x',b'y',b'z'], dtype='|S5') # 5 bytes per element
 
-Here `‘|S5’` means ‘endianness-unappliable sequence of bytes 5 elements long’.
+Here `|S5` means ‘endianness-unappliable sequence of bytes 5 elements long’.
 
 As for the native `np.str_` and `np.bytes_` types, numpy has a handful of common string operations mirroring str methods living in the np.char module that operate over the whole array:
 
 .. code:: python
 
-        >>> np.char.upper(np.array([[‘a’,’b’],[‘c’,’d’]]))
-        array([[‘A’, ‘B’],
-        [‘C’, ‘D’]], dtype=’<U1')
+        >>> np.char.upper(np.array([['a','b'],['c','d']]))
+        array([['A', 'B'],
+        ['C', 'D']], dtype='<U1')
 
 With object-mode strings the loops must happen on the python level:
 
@@ -285,7 +287,10 @@ For basic types the == operator does the job for a single type check:
 
 and in operator for checking against a group of types:
 
-x.dtype in (np.half, np.single, np.double, np.longdouble)
+.. code:: python
+
+        >>> x.dtype in (np.half, np.single, np.double, np.longdouble)
+        False
 
 But for more sophisticated types like `np.str_` or `np.datetime64` it doesn’t.
 
