@@ -242,6 +242,50 @@ When creating an array you choose if you are ok with the default microseconds or
 
 One downside of it is that all the times are naive: they know nothing of daylight saving and are not capable of being converted from one timezone to another. So it is not a replacement for pytz, rather a complement to it.
 
+
+***********************
+6. Combinations thereof
+***********************
+
+A structured dtype allows to create a custom type using the types described above as the basic building blocks. Typical example is an RGB pixel: a 4 bytes long type, in which the colors can be accessed by name: 
+
+.. code:: python
+
+        >>> rgb = np.dtype([('x', np.uint8), ('y', np.uint8), ('z', np.uint8)])
+        >>> a = np.zeros(5, z); a
+        array([(0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0), (0, 0, 0)],
+            dtype=[('x', 'u1'), ('y', 'u1'), ('z', 'u1')])
+        >>> a[0]
+        (0, 0, 0)
+        >>> a[0]['x']
+        0
+        >>> a[0]['x'] = 10
+        >>> a
+        array([(10, 0, 0), ( 0, 0, 0), ( 0, 0, 0), ( 0, 0, 0), ( 0, 0, 0)],
+            dtype=[('x', 'u1'), ('y', 'u1'), ('z', 'u1')])
+        >>> a['z'] = 5
+        >>> a
+        array([(10, 0, 5), ( 0, 0, 5), ( 0, 0, 5), ( 0, 0, 5), ( 0, 0, 5)],
+            dtype=[('x', 'u1'), ('y', 'u1'), ('z', 'u1')])
+
+To be able to access the fields as attributes, a recarray can be used:
+
+.. code:: python
+
+        >>> b = a.view(np.recarray)
+        >>> b
+        rec.array([(10, 0, 5), ( 0, 0, 5), ( 0, 0, 5), ( 0, 0, 5), ( 0, 0, 5)],
+                  dtype=[('x', 'u1'), ('y', 'u1'), ('z', 'u1')])
+        >>> b[0].x
+        10
+        >>> b.y=7; b
+        rec.array([(10, 7, 5), ( 0, 7, 5), ( 0, 7, 5), ( 0, 7, 5), ( 0, 7, 5)],
+          dtype=[('x', 'u1'), ('y', 'u1'), ('z', 'u1')])
+        
+Sure enough, recarray can be created on its own, without being a view of something else.
+Types for structured dtypes do not necessarily need to be homogenic and can even
+include subarrays.
+
 **************
 6. Type Checks
 **************
