@@ -32,7 +32,7 @@ When constructing an array with functions like zeros, ones
 
 .. code:: python
 
-        >> np.int is int
+        >>> np.int is int
         True
 
 If you’re unhappy with the int type that numpy have chosen for you (eg, both np.zeros(10, int) and np.arange(10) will probably choose np.int64 on x64 systems) you can opt for a better one with np.zeros(10, np.uint64) or np.zeros(10, 'int64').
@@ -41,9 +41,9 @@ Numpy works best when the width is fixed now so unlike ordinary python the value
 
 .. code:: python
 
-        >> np.array(10).dtype      # could be int64 on a different OS
+        >>> np.array(10).dtype      # could be int64 on a different OS
         dtype('int32')
-        >> np.array(2**31–1)+1     # 2**31-1 is INT_MAX for int32
+        >>> np.array(2**31–1)+1     # 2**31-1 is INT_MAX for int32
         -2147483648>>> np.array(2**63-1)+1    # np.int64 because v > 2**32-1
         -9223372036854775808
 
@@ -51,13 +51,13 @@ For performance reasons numpy doesn’t warn you about the overflows happening w
 
 .. code:: python
 
-        >> v = next(np.nditer(np.arange(3, 5))); v
+        >>> v = next(np.nditer(np.arange(3, 5))); v
         array(3)
-        >> v.shape
+        >>> v.shape
         ()
-        >> v.ndim
+        >>> v.ndim
         0
-        >> v[()]            # obtaining the value of the 0-dim array
+        >>> v[()]            # obtaining the value of the 0-dim array
         3
 
 As for numpy scalars — they are covered by the overflow warnings:
@@ -75,16 +75,16 @@ You can make it an error
 
 .. code:: python
 
-        >> with np.errstate(over='raise'):
-        >>    print(np.array([2**31-1])[0]+1)
+        >>> with np.errstate(over='raise'):
+        >>>    print(np.array([2**31-1])[0]+1)
         FloatingPointError: overflow encountered in long_scalars
 
 or suppress it
 
 .. code:: python
 
-        >> with np.errstate(over='ignore'):
-        >>    print(np.array([2**31-1])[0]+1)
+        >>> with np.errstate(over='ignore'):
+        >>>    print(np.array([2**31-1])[0]+1)
         -2147483648
 
 But you can’t expect it to be detected when dealing with any arrays.
@@ -95,8 +95,8 @@ Finally, if for some reason you need arbitrary-precision integers (python ints) 
 
 .. code:: python
 
-        >> a = np.array([10], dtype=object)
-        >> len(str(a**1000))                   # '[1000...0]'
+        >>> a = np.array([10], dtype=object)
+        >>> len(str(a**1000))                   # '[1000...0]'
         1003
 
 — but without the speedup as it will store references instead of the numbers themselves, keep boxing/unboxing python objects when processing, etc.
@@ -110,7 +110,7 @@ Finally, if for some reason you need arbitrary-precision integers (python ints) 
 
 As python did not diverge from IEEE 754-standardized C double type, the floattype transition from python to numpy is pretty much hassle-free:
 
-* This is the number reported by np.finfo(np.floatnn).precision. As usual with floats, depending on what you mean by significant digits it may be 15 (FLT_DIG) or 17 (FLT_DECIMAL_DIG) for float64, etc.
+\* This is the number reported by np.finfo(np.floatnn).precision. As usual with floats, depending on what you mean by significant digits it may be 15 (FLT_DIG) or 17 (FLT_DECIMAL_DIG) for float64, etc.
 
 ** Support for np.float128 is somewhat limited: it is unix-only (not available on windows). Also the names float96/float128 are highly misleading. Under the hood it is not __float128 but whichever longdouble means in the local C++ flavor. On 86_x64 linux it is float80 (padded with zeros to for memory alignment) which is certainly wider than float64, but it comes at the cost of the processing speed. Also you risk losing precision if you inadvertently convert to python float type. For better portability it is recommended to use an alias np.longdouble instead of np.float96 / np.float128 because that’s what will be used internally anyway.
 
@@ -118,12 +118,13 @@ Floats exactly represent integers below a certain level (limited by the number o
 
 .. code:: python
 
-        >> a = np.array([2**24], np.float32); a    # 2^(mantissa_bits+1)
+        >>> a = np.array([2**24], np.float32); a    # 2^(mantissa_bits+1)
         array([16777216.], dtype=float32)
-        >> a+1
-        array([16777216.], dtype=float32)       >> 9279945539648888.0+1    # for float64 it is 2.**53
+        >>> a+1
+        array([16777216.], dtype=float32)       
+        >>> 9279945539648888.0+1    # for float64 it is 2.**53
         9279945539648888.0               
-        >> len('9279945539648888') # Don't trust the 16th decimal digit!
+        >>> len('9279945539648888') # Don't trust the 16th decimal digit!
         16
 
 Also exactly representable are fractions like 0.5, 0.125, 0.875 where the denominator is a power of 2 (0.5=1/2, 0.125=1/8, 0.875 =7/8, etc). Any other denominator will result in a rounding error so that 0.1+0.2!=0.3. The standard approach of dealing with this problem is to compare them with a relative tolerance (to compare two non-zero arguments) and absolute tolerance (if one of the arguments is zero). For scalars it is handled by `math.isclose(a, b, *, rel_tol=1e-09, abs_tol=0.0)`, for numpy arrays there’s a vector version `np.isclose(a, b, rtol=1e-05, atol=1e-08)`. Note that the tolerances have different names and defaults.
@@ -132,10 +133,10 @@ For the financial data decimal.Decimal type is handy as it involves no additiona
 
 .. code:: python
 
-        >> from decimal import Decimal as D
-        >> a = np.array([D('0.1'), D('0.2')]); a
+        >>> from decimal import Decimal as D
+        >>> a = np.array([D('0.1'), D('0.2')]); a
         array([Decimal('0.1'), Decimal('0.2')], dtype=object)
-        >> a.sum()
+        >>> a.sum()
         Decimal('0.3')
 
 But it is not a silver bullet: it also has rounding errors. The only problem it solves is the exact representation of decimal numbers that humans are used to. Plus it doesn’t support anything more complicated than arithmetic operations and a square root and runs slower than floats.
@@ -144,12 +145,12 @@ For pure mathematic calculations fractions.Fraction can be used:
 
 .. code:: python
 
-        >> from fractions import Fraction
-        >> a = np.array([1, 2]) + Fraction(); a
+        >>> from fractions import Fraction
+        >>> a = np.array([1, 2]) + Fraction(); a
         array([Fraction(1, 1), Fraction(2, 1)], dtype=object)
-        >> a/=10; a
+        >>> a/=10; a
         array([Fraction(1, 10), Fraction(1, 5)], dtype=object)
-        >> a.sum()
+        >>> a.sum()
         Fraction(3, 10)
 
 It can represent any rational numbers, but pi and exp are out of luck )
@@ -172,7 +173,7 @@ The boolean values are stored as single bytes for better performance. `np.bool_`
 
 .. code:: python
 
-        >> sys.getsizeof(True)
+        >>> sys.getsizeof(True)
         28
 
 np.bool is 28 times more memory efficient than python’s bool )
@@ -187,7 +188,7 @@ Initializing a numpy array with a list of python strings packs them into a fixed
 
 .. code:: python
 
-        >> np.array([‘abcde’, ‘x’, ‘y’, ‘z’])        # 4 bytes per character
+        >>> np.array([‘abcde’, ‘x’, ‘y’, ‘z’])        # 4 bytes per character
         array(['abcde', 'x', 'y', 'z'], dtype='<U5') # 5*4 bytes per element
 
 The abbreviation ‘<U4’ comes from the so called array protocol and it means ‘little-endian USC-4-encoded string, 5 elements long’ (USC-4≈UTF-32, a fixed width, 4-bytes per character encoding).
@@ -196,7 +197,7 @@ Another option is to keep references to python strs in the numpy array:
 
 .. code:: python
 
-        >> np.array(['abcde', 'x', 'z'], dtype=object) # 1 byte ascii char
+        >>> np.array(['abcde', 'x', 'z'], dtype=object) # 1 byte ascii char
         array(['abcde', 'x', 'z'], dtype=object)       # 48+len(el) per el
 
 The first array totals 164 bytes, the second one is 128 bytes for the array itself +154 bytes for the three python strs.
@@ -205,7 +206,7 @@ Numpy also has a fixed-length version of a python bytes type:
 
 .. code:: python
 
-        >> np.array([‘abcde’, ‘x’, ‘y’, ‘z’])        # 1 byte per ascii
+        >>> np.array([‘abcde’, ‘x’, ‘y’, ‘z’])        # 1 byte per ascii
         array([b'abcde',b'x',b'y',b'z'], dtype='|S5') # 5 bytes per element
 
 Here `‘|S5’` means ‘endianness-unappliable sequence of bytes 5 elements long’.
@@ -214,7 +215,7 @@ As for the native `np.str_` and `np.bytes_` types, numpy has a handful of common
 
 .. code:: python
 
-        >> np.char.upper(np.array([[‘a’,’b’],[‘c’,’d’]]))
+        >>> np.char.upper(np.array([[‘a’,’b’],[‘c’,’d’]]))
         array([[‘A’, ‘B’],
         [‘C’, ‘D’]], dtype=’<U1')
 
@@ -222,7 +223,7 @@ With object-mode strings the loops must happen on the python level:
 
 .. code:: python
 
-        >> np.vectorize(lambda x: x.upper(), otypes=[object])(a)
+        >>> np.vectorize(lambda x: x.upper(), otypes=[object])(a)
         array([['A', 'B'],
             ['C', 'D']], dtype=object)
 
@@ -240,7 +241,7 @@ When creating an array you choose if you are ok with the default microseconds or
 
 .. code:: python
 
-        >> np.array([dt.utcnow()], dtype=np.datetime64)
+        >>> np.array([dt.utcnow()], dtype=np.datetime64)
         array(['2021-12-24T18:14:00.403438'], dtype='datetime64[us]')
 
 One downside of it is that all the times are naive: they know nothing of daylight saving and are not capable of being converted from one timezone to another. So it is not a replacement for pytz, rather a complement to it.
@@ -253,22 +254,22 @@ One way to check numpy array type is to run isinstance against its element:
 
 .. code:: python
 
-        >> a = np.array([1, 2, 3])
-        >> v = a[0]
-        >> isinstance(v, np.int32)    # might be np.int64 on a different OS
+        >>> a = np.array([1, 2, 3])
+        >>> v = a[0]
+        >>> isinstance(v, np.int32)    # might be np.int64 on a different OS
         True
 
 All the numpy types are interconnected in an inheritance tree displayed in the top of the article (blue=abstract classes, green=numeric types, yellow=others) so instead of specifying a whole list of types like isinstance(v, [np.int32, np.int64, etc]) you can write more compact typechecks like
 
 .. code:: python
 
-        >> isinstance(v, np.integer)        # true for all integers
+        >>> isinstance(v, np.integer)        # true for all integers
         True
-        >> isinstance(v, np.number)         # true for integers and floats
+        >>> isinstance(v, np.number)         # true for integers and floats
         True
-        >> isinstance(v, np.floating)       # true for floats except complex
+        >>> isinstance(v, np.floating)       # true for floats except complex
         False
-        >> isinstance(v, np.complexfloating) # true for complex floats only 
+        >>> isinstance(v, np.complexfloating) # true for complex floats only 
         False
 
 The downside of this method is that it only works against a value of the array, not against the array itself. Which is not useful when the array is empty, for example. Checking the type of the array is more tricky.
@@ -277,9 +278,9 @@ For basic types the == operator does the job for a single type check:
 
 .. code:: python
 
-        >> a.dtype == np.int32
+        >>> a.dtype == np.int32
         True
-        >> a.dtype == np.int64
+        >>> a.dtype == np.int64
         False
 
 and in operator for checking against a group of types:
@@ -292,9 +293,9 @@ The recommended way⁴ of checking the dtype against the abstract types is
 
 .. code:: python
 
-        >> np.issubdtype(a.dtype, np.integer)
+        >>> np.issubdtype(a.dtype, np.integer)
         True
-        >> np.issubdtype(a.dtype, np.floating)
+        >>> np.issubdtype(a.dtype, np.floating)
         False
 
 It works with all native numpy types, but the necessity of this method looks somewhat non-obvious: what’s wrong with good oldisinstance? Obviously the complexity of dtypes inheritance structure (they are constructed ‘on the fly’!) didn’t allow to do it according to principle of the least astonishment.
@@ -303,7 +304,7 @@ Yet another method is to use (undocumented, but used in scipy/numpy code bases) 
 
 .. code:: python
 
-        >> np.typecodes
+        >>> np.typecodes
         {'Character': 'c',
         'Integer': 'bhilqp',
         'UnsignedInteger': 'BHILQP',
@@ -318,9 +319,9 @@ And the usage is like
 
 .. code:: python
 
-        >> a.dtype.kind in np.typecodes['AllInteger']
+        >>> a.dtype.kind in np.typecodes['AllInteger']
         True
-        >> a.dtype.kind in np.typecodes['Datetime']
+        >>> a.dtype.kind in np.typecodes['Datetime']
         False
 
 This approach looks more hackish yet less magical than issubdtype.
