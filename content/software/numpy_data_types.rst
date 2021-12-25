@@ -26,16 +26,9 @@ Outline
 
 When you feed a python int into numpy, it gets converted into a native numpy type called np.int32 (or np.int64 depending on the OS, python version and the magnitude of the initializers).
 
-If you’re unhappy with the int type that numpy have chosen for you in functions like array and arange, or you want you can instruct numpy to choose whichever integer type it find most appropriate: np.zeros(10, int)— which is exactly the same thing as np.zeros(10, np.int) since
+If you’re unhappy with the int type that numpy have chosen for you, you can specify one explicitly with np.zeros(10, np.uint8) or np.zeros(10, 'uint8').
 
-When constructing an array with functions like zeros, ones
-
-.. code:: python
-
-        >>> np.int is int
-        True
-
-If you’re unhappy with the int type that numpy have chosen for you (eg, both np.zeros(10, int) and np.arange(10) will probably choose np.int64 on x64 systems) you can opt for a better one with np.zeros(10, np.uint64) or np.zeros(10, 'int64').
+Just like in C/C++, `u` stands for 'unsigned' and the number designates the width of the variable in bits.
 
 Numpy works best when the width is fixed now so unlike ordinary python the value will rotate when it reaches the maximum value for the corresponding data type:
 
