@@ -44,10 +44,10 @@ Numpy works best when the width is fixed now so unlike ordinary python the value
         >>> np.array(10).dtype      # could be int64 on a different OS
         dtype('int32')
         >>> np.array(2**31–1)+1     # 2**31-1 is INT_MAX for int32
-        -2147483648>>> np.array(2**63-1)+1    # np.int64 because v > 2**32-1
+        -2147483648>>> np.array(2**63-1)+1    # always np.int64 because v > 2**32-1
         -9223372036854775808
 
-For performance reasons numpy doesn’t warn you about the overflows happening with arrays — even with zero-dimensional array such as those in the example above. More realistic example where you can run into a zero-dimensional array is when you iterate over a numpy array with nditer:
+For performance reasons numpy doesn’t warn you about the overflows happening with arrays — even with zero-dimensional array such as those in the example above. Speaking of zero-dimensional arrays more realistic example where you can run into them is when you iterate over a numpy array with nditer:
 
 .. code:: python
 
