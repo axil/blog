@@ -45,3 +45,5 @@ DIRECT_TEMPLATES = ('index', 'tags', 'categories', 'archives', 'sitemap')
 SITEMAP_SAVE_AS = 'sitemap.xml'
 
 DISQUS_SITENAME = "axil"
+
+RST_GLOBAL_INCLUDES = [ "include/globals.rst" ]
