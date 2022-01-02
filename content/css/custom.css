@@ -51,6 +51,8 @@ aside {
 
 .article-content p.caption {
     margin-top: 0;
+    font-size: 1em;
+    text-align: center;
 }
 
 body article p a, body article ol a { 
